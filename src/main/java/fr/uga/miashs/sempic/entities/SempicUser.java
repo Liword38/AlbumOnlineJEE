@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * @author Jerome David <jerome.david@univ-grenoble-alpes.fr>
  */
 
-@Entity
+
 @Table(uniqueConstraints = {
     @UniqueConstraint(name = "UniqueEmail", columnNames = {"email"})
 })
@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
     @NamedAttributeNode("memberOf"),
   }
 )
-
+@Entity
 public class SempicUser implements Serializable {
     public final static String PREFIX="/users/";
     
@@ -68,7 +68,7 @@ public class SempicUser implements Serializable {
     @OneToMany(mappedBy = "owner",cascade = CascadeType.REMOVE)
     private Set<SempicGroup> groups;
 
-    @ManyToMany(mappedBy = "members" )//,cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "members" )//,cascade = CascadeType.REMOVE)//, fetch=FetchType.EAGER
     private Set<SempicGroup> memberOf;
     
     @Enumerated(EnumType.STRING)

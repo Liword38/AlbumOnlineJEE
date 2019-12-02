@@ -94,7 +94,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Tomee plugin for standalone deployement : mvn tomee:exec -->
+            <!-- Tomee plugin for standalone deployement : mvn package tomee:exec -->
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
