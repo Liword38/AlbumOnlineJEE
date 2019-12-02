@@ -4,7 +4,7 @@
 
     <groupId>fr.uga.miashs</groupId>
     <artifactId>SempicJPA</artifactId>
-    <version>1</version>
+    <version>1.1</version>
     <packaging>war</packaging>
 
     <name>SempicJPA</name>

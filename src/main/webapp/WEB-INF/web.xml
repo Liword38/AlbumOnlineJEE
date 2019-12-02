@@ -50,7 +50,6 @@
             <description/>
             <role-name>USER</role-name>
         </auth-constraint>
-
     </security-constraint>
     
     <!-- only with tomee -->
