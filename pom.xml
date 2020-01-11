@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.uga.miashs</groupId>
-    <artifactId>SempicJPA</artifactId>
+    <artifactId>AlbumOnline</artifactId>
     <version>1.1</version>
     <packaging>war</packaging>
 
-    <name>SempicJPA</name>
+    <name>AlbumOnline</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
