@@ -8,16 +8,32 @@
         <f:viewAction  action="home"/>
     </f:metadata>
     <h:head>
-        <title>Welcome page</title>
+        <title>Albums Online</title>
     </h:head>
     <h:body>
-        <p>Welcome to sempic application</p>
-        
-        <p>Avalaible actions:</p>
+        <h1 style="text-align: center">Bienvenue sur l'application de partage de photos !</h1>
+    
+        <div style="margin-left: 43%; margin-top: 5%">
+        <h2>Mes albums</h2>
+        <h:button value="Créer un album"/>
         <ul>
             <li><h:button outcome="create-user" value="Create a user"/></li>
             <li><h:button outcome="list-users" value="List of users"/></li>
         </ul>
+        
+        <h2>Mes groupes</h2>
+        <h:button outcome="create-group" value="Créer un groupe"/>
+        
+        <h:dataTable id="groups" value="#{listGroups.dataModel}" var="group">
+            <h:column>
+                <h:outputText value="#{group.name}"/>
+            </h:column>
+        </h:dataTable>    
+        <ul>
+            <li>Nom d'un groupe</li>
+            <li>Nom d'un groupe</li>
+        </ul>
+        </div>
     </h:body>
 </html>
 
