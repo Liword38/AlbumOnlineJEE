@@ -76,7 +76,7 @@
     
     <navigation-rule>
         <description>Group creation action result</description>
-        <from-view-id>create-group.xhtml</from-view-id>
+        <from-view-id>user/create-group.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{createGroup.create()}</from-action>
             <from-outcome>success</from-outcome>
