@@ -15,75 +15,74 @@ import javax.validation.constraints.*;
  *
  * @author Jerome David <jerome.david@univ-grenoble-alpes.fr>
  */
-
-
 @Table(uniqueConstraints = {
     @UniqueConstraint(name = "UniqueEmail", columnNames = {"email"})
 })
 @NamedQueries({
-@NamedQuery(
-        name = "query.SempicUser.findAllEager", 
-        query = "SELECT DISTINCT u FROM SempicUser u LEFT JOIN FETCH u.groups LEFT JOIN FETCH u.memberOf"
-),
-@NamedQuery(
-        name = "query.SempicUser.readByEmail",
-        query = "SELECT DISTINCT u FROM SempicUser u WHERE u.email=:email "
-),
-@NamedQuery(
-        name = "query.SempicUser.login",
-        query = "SELECT DISTINCT u FROM SempicUser u WHERE u.email=:email AND u.passwordHash=:passwordHash"
-)
+    @NamedQuery(
+            name = "query.SempicUser.findAllEager",
+            query = "SELECT DISTINCT u FROM SempicUser u LEFT JOIN FETCH u.groups LEFT JOIN FETCH u.memberOf"
+    ),
+    @NamedQuery(
+            name = "query.SempicUser.readByEmail",
+            query = "SELECT DISTINCT u FROM SempicUser u WHERE u.email=:email "
+    ),
+    @NamedQuery(
+            name = "query.SempicUser.login",
+            query = "SELECT DISTINCT u FROM SempicUser u WHERE u.email=:email AND u.passwordHash=:passwordHash"
+    )
 })
 @NamedEntityGraph(
-  name = "graph.SempicUser.groups-memberOf",
-  attributeNodes = {
-    @NamedAttributeNode("groups"),
-    @NamedAttributeNode("memberOf"),
-  }
+        name = "graph.SempicUser.groups-memberOf",
+        attributeNodes = {
+            @NamedAttributeNode("groups"),
+            @NamedAttributeNode("memberOf"),}
 )
 @Entity
 public class SempicUser implements Serializable {
     public final static String PREFIX="/users/";
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    @NotBlank(message="Un nom de famille doit être donné")
+
+    @NotBlank(message = "Un nom de famille doit être donné")
     private String lastname;
-    
-    @NotBlank(message="Un prénom doit être donné")
+
+    @NotBlank(message = "Un prénom doit être donné")
     private String firstname;
-    
+
     @Email
-    @NotBlank(message="Une adresse mail doit être donnée")
+    @NotBlank(message = "Une adresse mail doit être donnée")
     private String email;
-    
-    @NotBlank(message="Un mot de passe doit être donné")
+
+    @NotBlank(message = "Un mot de passe doit être donné")
     private String passwordHash;
-    
+
     @Transient
     private transient String password;
-    
-    @OneToMany(mappedBy = "owner",cascade = CascadeType.REMOVE)
+
+    @OneToMany(mappedBy = "albumOwner", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+    private Set<SempicAlbum> albums;
+
+    @OneToMany(mappedBy = "grpOwner", cascade = CascadeType.REMOVE)
     private Set<SempicGroup> groups;
 
-    @ManyToMany(mappedBy = "members" )//,cascade = CascadeType.REMOVE)//, fetch=FetchType.EAGER
+    @ManyToMany(mappedBy = "grpMembers",cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
     private Set<SempicGroup> memberOf;
-    
+
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition="VARCHAR(5)")
+    @Column(columnDefinition = "VARCHAR(5)")
     private SempicUserType userType;
-    
 
     public SempicUser() {
-        userType=SempicUserType.USER;
+        userType = SempicUserType.USER;
     }
-    
+
     public long getId() {
         return id;
     }
-    
+
     public String getLastname() {
         return lastname;
     }
@@ -111,29 +110,41 @@ public class SempicUser implements Serializable {
     public String getPasswordHash() {
         return passwordHash;
     }
-    
+
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
-    
+
     public void setPassword(String p) {
-        password=p;
+        password = p;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
+    public Set<SempicAlbum> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<SempicAlbum> albums) {
+        this.albums = albums;
+    }
+
     public Set<SempicGroup> getGroups() {
-        if (groups==null) return Collections.emptySet();
+        if (groups == null) {
+            return Collections.emptySet();
+        }
         return Collections.unmodifiableSet(groups);
     }
 
     public Set<SempicGroup> getMemberOf() {
-        if (memberOf==null) return Collections.emptySet();
+        if (memberOf == null) {
+            return Collections.emptySet();
+        }
         return Collections.unmodifiableSet(memberOf);
     }
-    
+
     public SempicUserType getUserType() {
         return userType;
     }
@@ -167,10 +178,10 @@ public class SempicUser implements Serializable {
         return true;
     }
 
- 
-    @Override
+   @Override
     public String toString() {
         return "SempicUser{id="+ id + ", "
                 + "lastname=" + lastname + ", firstname=" + firstname + ", email=" + email + '}';
     }
+
 }

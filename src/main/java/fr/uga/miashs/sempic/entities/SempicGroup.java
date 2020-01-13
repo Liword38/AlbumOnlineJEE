@@ -5,7 +5,6 @@
  */
 package fr.uga.miashs.sempic.entities;
 
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,21 +26,24 @@ public class SempicGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    @NotBlank(message="Il faut un nom de groupe")
+
+    @NotBlank(message = "Il faut un nom de groupe")
     private String name;
-    
+
     @NotNull
     @ManyToOne
-    private SempicUser owner;
-    
+    private SempicUser grpOwner;
+
     @ManyToMany
-    private Set<SempicUser> members;
+    private Set<SempicUser> grpMembers;
+
+    @ManyToMany(mappedBy = "sharedWithGrp")
+    private Set<SempicAlbum> memberOfAlbums;
 
     public SempicGroup() {
-        
+
     }
-    
+
     public long getId() {
         return id;
     }
@@ -55,30 +57,54 @@ public class SempicGroup implements Serializable {
     }
 
     public SempicUser getOwner() {
-        return owner;
+        return grpOwner;
     }
 
     public void setOwner(SempicUser owner) {
-        this.owner = owner;
+        this.grpOwner = owner;
         addMember(owner);
     }
-    
+
+    public Set<SempicAlbum> getMemberOfAlbum() {
+        return memberOfAlbums;
+    }
+
+    public void setMemberOfAlbum(Set<SempicAlbum> memberOfAlbums) {
+        this.memberOfAlbums = memberOfAlbums;
+    }
+
     protected void addMember(SempicUser u) {
-        if (members==null) {
-            members = new HashSet<>();
+        if (grpMembers == null) {
+            grpMembers = new HashSet<>();
         }
-        members.add(u);
+        grpMembers.add(u);
     }
 
     public Set<SempicUser> getMembers() {
-        return members;
-    }  
+        return grpMembers;
+    }
 
     public void setMembers(Set<SempicUser> members) {
-        this.members = members;
-        members.add(owner);
+        this.grpMembers = members;
+        members.add(grpOwner);
     }
-    
+
+    public SempicUser getGrpOwner() {
+        return grpOwner;
+    }
+
+    public void setGrpOwner(SempicUser grpOwner) {
+        this.grpOwner = grpOwner;
+    }
+
+    public Set<SempicUser> getGrpMembers() {
+        return grpMembers;
+    }
+
+    public void setGrpMembers(Set<SempicUser> grpMembers) {
+        this.grpMembers = grpMembers;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -106,12 +132,11 @@ public class SempicGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "Group{" + "id=" + id + ", name=" + name + ", owner=" + owner + '}';
+        return "SempicGroup{" + "id=" + id + ", name=" + name + ", grpOwner=" + grpOwner + '}';
     }
-    
-    
-    
-    
-    
-    
+
+  
+
+  
+
 }

@@ -34,4 +34,15 @@ public class GroupFacade extends AbstractJpaFacade<Long,SempicGroup>{
         q.setParameter(2,groupId);
         q.executeUpdate();
     }
+    
+    
+//    //TODO
+//    public void addAlbum(long groupID, long albumID) {
+//        //...
+//    }
+//    
+//    //TODO
+//    public void deleteAlbum(long groupID, long albumID) {
+//        //...
+//    }
 }
