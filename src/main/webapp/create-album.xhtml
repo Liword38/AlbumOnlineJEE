@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="userId" value="#{createAlbum.ownerId}" />
+    </f:metadata>
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <h:panelGrid columns = "3">
+                <label for="name">Nom:</label>
+                <h:inputText id="name" h5:placeholder="Mon album" value="#{createAlbum.current.name}"/>
+                <h:message for="name"/>
+            </h:panelGrid>
+            <label>Photos :</label>
+            <h:commandButton value="Créer" action="#{createAlbum.create()}"/>
+
+            <h:messages globalOnly="true"/>
+
+        </h:form>
+    </body>
+</html>
