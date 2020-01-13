@@ -17,10 +17,6 @@ import javax.validation.constraints.NotNull;
  * @author Jerome David <jerome.david@univ-grenoble-alpes.fr>
  */
 @Entity
-@Table(uniqueConstraints = {
-    @UniqueConstraint(name = "UniqueGroupName", columnNames = {"name"})
-})
-
 public class SempicGroup implements Serializable {
 
     @Id
@@ -135,8 +131,5 @@ public class SempicGroup implements Serializable {
         return "SempicGroup{" + "id=" + id + ", name=" + name + ", grpOwner=" + grpOwner + '}';
     }
 
-  
-
-  
 
 }

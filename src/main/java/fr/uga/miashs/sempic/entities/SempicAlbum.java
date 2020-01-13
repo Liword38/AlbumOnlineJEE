@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
@@ -25,9 +27,6 @@ import javax.validation.constraints.NotNull;
  * @author Martin
  */
 @Entity
-@Table(uniqueConstraints = {
-    @UniqueConstraint(name = "UniqueAlbumName", columnNames = {"name"})
-})
 public class SempicAlbum implements Serializable {
     
     @Id
@@ -47,8 +46,8 @@ public class SempicAlbum implements Serializable {
     private String name;
 
     //TODO: Mettre des vrais photos  &  mapping
-    //@ManyToMany
-    //private Set<String> photos;
+    @OneToMany(mappedBy = "inAlbum", cascade = CascadeType.REMOVE )
+    private Set<SempicPhoto> photos;
 
     public SempicAlbum() {
 
@@ -99,20 +98,20 @@ public class SempicAlbum implements Serializable {
         this.sharedWithGrp = sharedWithGrp;
     }
 
-//    public Set<String> getPhotos() {
-//        return photos;
-//    }
-//
-//    public void addPhoto (String p) {
-//        if (photos==null) {
-//            photos = new HashSet<>();
-//        }
-//        photos.add(p);
-//    }
-//    
-//    public void setPhotos(Set<String> photos) {
-//        this.photos = photos;
-//    }
+    public Set<SempicPhoto> getPhotos() {
+        return photos;
+    }
+
+    public void addPhoto (SempicPhoto p) {
+        if (photos==null) {
+            photos = new HashSet<>();
+        }
+        photos.add(p);
+    }
+    
+    public void setPhotos(Set<SempicPhoto> photos) {
+        this.photos = photos;
+    }
 
     @Override
     public int hashCode() {
