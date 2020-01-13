@@ -82,6 +82,12 @@ public class CreateGroup implements Serializable {
         System.out.println(current);
         
         try {
+            if (current.getGrpOwner() == null) {
+                SessionTools st = new SessionTools();
+                SempicUser owner = st.getConnectedUser();
+                
+                current.setGrpOwner(owner);
+            }
             groupDao.create(current);
         } catch (SempicModelException ex) {
            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));

@@ -23,8 +23,9 @@
             <h:selectManyCheckbox id="members" layout="pageDirection" value="#{createGroup.current.members}">
                 <f:selectItems value="#{createGroup.users}"  var="u" itemLabel="#{u.email}"/>
             </h:selectManyCheckbox>
-            <h:commandButton value="Créer" action="#{createGroup.create()}"/>
-
+            <h:commandButton value="Créer" action="#{createGroup.create()}">
+                <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
+            </h:commandButton>
             <h:messages globalOnly="true"/>
 
         </h:form>
