@@ -11,6 +11,13 @@
         <title>Albums Online</title>
     </h:head>
     <h:body>
+        <h:form>
+            <h:commandButton value="Se déconnecter" action="#{sessionTools.logout()}"/>
+        </h:form>
+        
+        <h:button outcome="my-groups" value="Consulter mes groupes"/>
+        
+        
         <h1 style="text-align: center">Bienvenue sur l'application de partage de photos !</h1>
     
         <div style="margin-left: 43%; margin-top: 5%">
@@ -41,7 +48,6 @@
         </ul>
         
         <h2>Les photos</h2>
-      <!--  <h:button outcome="create-photo" value="Créer une photo"/> -->
 
         <h:dataTable id="photos" value="#{listPhotos.dataModel}" var="photo">
             <h:column>
