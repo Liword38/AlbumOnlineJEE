@@ -9,49 +9,87 @@
     </h:head>
     <h:body>
 
-        <h:dataTable id="users" value="#{listUsers.dataModel}" var="user">
+        <h:form>
+            <h:dataTable value="#{listUsers.dataModel}" var="user"
+                         rules="all">
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Lastname" />
-                </f:facet>
+                <h:column >
+                    <f:facet name="header">
+                        <h:outputText value="Lastname" />
+                    </f:facet>
 
-                <h:outputText value="#{user.lastname}"/>
-            </h:column>
+                    <h:outputText value="#{user.lastname}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Firstname" />
-                </f:facet>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Firstname" />
+                    </f:facet>
 
-                <h:outputText value="#{user.firstname}"/>
-            </h:column>
+                    <h:outputText value="#{user.firstname}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Email" />
-                </f:facet>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email" />
+                    </f:facet>
 
-                <h:outputText value="#{user.email}"/>
-            </h:column>
+                    <h:outputText value="#{user.email}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Groups" />
-                </f:facet>
-                <ui:repeat value="#{user.groups}" var="g">
-                    <h:outputText value="#{g.name} "/>
-                </ui:repeat>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" Propriétaire des Groupes" />
+                    </f:facet>
+                    <ui:repeat value="#{user.groups}" var="g">
+                        <h:outputText value="#{g.name} | "/>
+                    </ui:repeat>
+                </h:column>
 
-            <h:column>
-                <h:button value="Create a group" outcome="create-group">
-                    <f:param name="userId" value="#{user.id}"/>
-                </h:button>
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Membre des Groupes " />
+                    </f:facet>
+                    <ui:repeat value="#{user.memberOf}" var="g">
+                        <h:outputText value="#{g.name} | "/>
+                    </ui:repeat>
+                </h:column>
+
+                <h:column>
+                    <h:button value="Create a group" outcome="create-group">
+                        <f:param name="userId" value="#{user.id}"/>
+                    </h:button>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" Propriétaire des Albums" />
+                    </f:facet>
+                    <ui:repeat value="#{user.albums}" var="a">
+                        <h:outputText value="#{a.name} | "/>
+                    </ui:repeat>
+                </h:column>
 
 
-        </h:dataTable>
+                <!--  MArche pas
+                              <h:column>
+                                  <f:facet name="header">
+                                      <h:outputText value="Membre d'Albums " />
+                                  </f:facet>
+                                  <ui:repeat value="#{user.memberOf}" var="g">
+                                      <ui:repeat value="#{g.albums}" var="m">
+                                      <h:outputText value="#{m.name} "/>
+                                      </ui:repeat>
+                                  </ui:repeat>
+                              </h:column>
+                -->
+                <h:column>
+                    <h:commandButton value="Supprimer utilisateur" action="#{deleteUser.delete(user.id)}">
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
 
         <h:link value="Add a new user link"  outcome="create-user"/>
 

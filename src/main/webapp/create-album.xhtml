@@ -13,7 +13,7 @@ and open the template in the editor.
         <f:viewParam name="userId" value="#{createAlbum.ownerId}" />
     </f:metadata>
     <head>
-        <title>TODO supply a title</title>
+        <title>Créer un album</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
@@ -24,8 +24,9 @@ and open the template in the editor.
                 <h:message for="name"/>
             </h:panelGrid>
             <label>Photos :</label>
-            <h:commandButton value="Créer" action="#{createAlbum.create()}"/>
-
+            <h:commandButton value="Créer" action="#{createAlbum.create()}">
+                <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
+            </h:commandButton>
             <h:messages globalOnly="true"/>
 
         </h:form>

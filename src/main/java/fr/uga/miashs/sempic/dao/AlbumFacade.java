@@ -6,6 +6,9 @@
 package fr.uga.miashs.sempic.dao;
 
 import fr.uga.miashs.sempic.entities.SempicAlbum;
+import fr.uga.miashs.sempic.entities.SempicGroup;
+import fr.uga.miashs.sempic.entities.SempicUser;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
@@ -14,43 +17,28 @@ import javax.persistence.Query;
  * @author Martin
  */
 @Stateless
-public class AlbumFacade extends AbstractJpaFacade<Long,SempicAlbum>{
-    
+public class AlbumFacade extends AbstractJpaFacade<Long, SempicAlbum> {
+
     public AlbumFacade() {
         super(SempicAlbum.class);
     }
-    
-//Probablement de la merde    
-//    //Pas testé
-//    public void addGroup(long albumId, long groupId) {
-//        Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICALBUM_SEMPICGROUP(MEMBEROFALBUM_ID,SHAREDWITHGRP_ID) VALUES (?1,?2)");
-//        
-//        q.setParameter(1,groupId);
-//        q.setParameter(2,albumId);
-//        q.executeUpdate();
-//    
-//}
-//    
-//    //pas testé
-//    public void deleteGroup(long albumId, long groupId) {
-//        Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICALBUM_SEMPICGROUP WHERE MEMBEROFALBUM_ID=?1 and SHAREDWITH_ID=?2");
-//        q.setParameter(1,groupId);
-//        q.setParameter(2,albumId);
-//        q.executeUpdate();
-//    }
-    
-    //TODO
-    public void findByUser() {
-        
+
+    //Pas testé probablement faux
+    public List<SempicAlbum> findByUser(Long userId) {
+        Query q;
+        q = getEntityManager().createNativeQuery("SELECT DISTINCT a FROM SempicAlbum a WHERE a.sempicalbum_id IN(SELECT g FROM SempicGroup g WHERE g.members_id=:userId) AND a.sempicalbum_id=g.memberofalbum_id");
+        q.setParameter("userId", userId);
+        return q.getResultList();
+
     }
-    
+
     //TODO
     public void addPhoto() {
-        
+
     }
-    
+
     //TODO
     public void deletePhoto() {
-        
+
     }
 }
