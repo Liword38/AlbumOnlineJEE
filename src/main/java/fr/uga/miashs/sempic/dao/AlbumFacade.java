@@ -11,6 +11,7 @@ import fr.uga.miashs.sempic.entities.SempicUser;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -22,7 +23,14 @@ public class AlbumFacade extends AbstractJpaFacade<Long, SempicAlbum> {
     public AlbumFacade() {
         super(SempicAlbum.class);
     }
-
+    
+   public List<SempicAlbum> findAllByOwner(long userId) {
+        System.out.println("A l'intérieur de findAllByOwner()");
+        TypedQuery<SempicAlbum> q = getEntityManager().createQuery("SELECT DISTINCT a FROM SempicAlbum a, SempicUser u WHERE u.id=:userId AND a.albumOwner=u", SempicAlbum.class);
+        q.setParameter("userId", userId);
+        return q.getResultList();
+    }
+    
     //Pas testé probablement faux
     public List<SempicAlbum> findByUser(Long userId) {
         Query q;
