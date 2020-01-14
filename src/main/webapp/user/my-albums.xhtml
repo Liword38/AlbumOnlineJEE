@@ -20,7 +20,7 @@ and open the template in the editor.
                 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Name" />
+                        <h:outputText value="Nom" />
                     </f:facet>
 
                     <h:outputText value="#{album.name}"/>
@@ -28,11 +28,25 @@ and open the template in the editor.
                 
                 <h:column>
                     <f:facet name="header">
+                        <h:outputText value="Description" />
+                    </f:facet>
+
+                    <h:outputText value="#{album.description}"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
                         <h:outputText value="Partagé avec" />
                     </f:facet>
+                    
                     <ui:repeat value="#{album.sharedWithGrp}" var="m">
                         <h:outputText value="#{m.name} | "/>
                     </ui:repeat>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Modifier" action=""/>
+                    <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
+                    
                 </h:column>
                 
                 
