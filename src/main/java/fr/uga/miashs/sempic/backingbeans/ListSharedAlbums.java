@@ -31,11 +31,11 @@ public class ListSharedAlbums implements Serializable{
     @Inject
     private SessionTools sessionTools;
     
-    
+    //Pas testé, marche surement pas
     public DataModel<SempicAlbum> getDataModel() {
         long currentUserId = sessionTools.getConnectedUser().getId();
         if (dataModel == null) {
-            dataModel = new ListDataModel<>(albumDao.findByUser(currentUserId));
+            dataModel = new ListDataModel<>(albumDao.findAllByUser(currentUserId));
         }
         return dataModel;
     }

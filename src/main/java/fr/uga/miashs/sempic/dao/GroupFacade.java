@@ -25,7 +25,6 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
     }
 
     public List<SempicGroup> findAllByOwner(long userId) {
-        System.out.println("A l'intérieur de findAllByOwner()");
         TypedQuery<SempicGroup> q = getEntityManager().createQuery("SELECT DISTINCT g FROM SempicGroup g, SempicUser u WHERE u.id=:userId AND g.grpOwner=u", SempicGroup.class);
         q.setParameter("userId", userId);
         return q.getResultList();
