@@ -72,6 +72,7 @@ public class ApplicationConfig {
 
 
     public final static String DATA_SOURCE = "java:app/sempicdb";
+    public final static String WEB_API = "";
 
     @Inject
     private Pbkdf2PasswordHash passwordHash;
