@@ -20,25 +20,29 @@ public class AlbumFacade extends AbstractJpaFacade<Long,SempicAlbum>{
         super(SempicAlbum.class);
     }
     
+//Probablement de la merde    
+//    //Pas testé
+//    public void addGroup(long albumId, long groupId) {
+//        Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICALBUM_SEMPICGROUP(MEMBEROFALBUM_ID,SHAREDWITHGRP_ID) VALUES (?1,?2)");
+//        
+//        q.setParameter(1,groupId);
+//        q.setParameter(2,albumId);
+//        q.executeUpdate();
+//    
+//}
+//    
+//    //pas testé
+//    public void deleteGroup(long albumId, long groupId) {
+//        Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICALBUM_SEMPICGROUP WHERE MEMBEROFALBUM_ID=?1 and SHAREDWITH_ID=?2");
+//        q.setParameter(1,groupId);
+//        q.setParameter(2,albumId);
+//        q.executeUpdate();
+//    }
     
-    //Pas testé
-    public void addGroup(long albumId, long groupId) {
-        Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICALBUM_SEMPICGROUP(MEMBEROFALBUM_ID,SHAREDWITHGRP_ID) VALUES (?1,?2)");
+    //TODO
+    public void findByUser() {
         
-        q.setParameter(1,groupId);
-        q.setParameter(2,albumId);
-        q.executeUpdate();
-    
-}
-    
-    //pas testé
-    public void deleteGroup(long albumId, long groupId) {
-        Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICALBUM_SEMPICGROUP WHERE MEMBEROFALBUM_ID=?1 and SHAREDWITH_ID=?2");
-        q.setParameter(1,groupId);
-        q.setParameter(2,albumId);
-        q.executeUpdate();
     }
-    
     
     //TODO
     public void addPhoto() {

@@ -5,11 +5,15 @@
  */
 package fr.uga.miashs.sempic;
 
+import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.entities.SempicGroup;
 import fr.uga.miashs.sempic.entities.SempicUser;
 import fr.uga.miashs.sempic.entities.SempicUserType;
 import fr.uga.miashs.sempic.dao.GroupFacade;
+import fr.uga.miashs.sempic.dao.PhotoFacade;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
+import fr.uga.miashs.sempic.entities.SempicAlbum;
+import fr.uga.miashs.sempic.entities.SempicPhoto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -76,9 +80,15 @@ public class ApplicationConfig {
     private SempicUserFacade userFacade;
     @Inject
     private GroupFacade groupFacade;
-
+    @Inject
+    private AlbumFacade albumFacade;
+    @Inject
+    private PhotoFacade photoFacade;
+    
+    
     @PostConstruct
     public void init() {
+        //Create Admin
         SempicUser admin = new SempicUser();
         admin.setFirstname("Jack");
         admin.setLastname("Rabbit");
@@ -86,12 +96,29 @@ public class ApplicationConfig {
         admin.setUserType(SempicUserType.ADMIN);
         admin.setPasswordHash(passwordHash.generate("admin".toCharArray()));
 
+        //Create Admin Group
         SempicGroup g = new SempicGroup();
         g.setName("admins");
         g.setOwner(admin);
+           
+        //Create Admin's Album
+        SempicAlbum a = new SempicAlbum();
+        a.setName("L'album de l'admin");
+        a.setDescription("Cet album sert à tester l'app");
+        a.setAlbumOwner(admin);
+        
+        //Create Photo for Admin's Album
+        SempicPhoto p = new SempicPhoto();
+        p.setContent("Une magnifique photo (pour le moment une photo est une string)");
+        p.setInAlbum(a);
+        
+        
         try {
             userFacade.create(admin);
             groupFacade.create(g);
+            albumFacade.create(a);
+            photoFacade.create(p);
+            
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin created");
         } catch (SempicModelException e) {
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin already exists");

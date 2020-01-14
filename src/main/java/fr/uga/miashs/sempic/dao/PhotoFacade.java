@@ -19,5 +19,8 @@ public class PhotoFacade extends AbstractJpaFacade<Long,SempicPhoto> {
         super(SempicPhoto.class);
     }
     
-    
+    //TODO
+    public void findByAlbum() {
+        
+    }
 }

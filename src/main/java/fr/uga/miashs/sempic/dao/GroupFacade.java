@@ -36,13 +36,19 @@ public class GroupFacade extends AbstractJpaFacade<Long,SempicGroup>{
     }
     
     
-//    //TODO
-//    public void addAlbum(long groupID, long albumID) {
-//        //...
-//    }
-//    
-//    //TODO
-//    public void deleteAlbum(long groupID, long albumID) {
-//        //...
-//    }
+    //TODO
+    public void findByUser() {
+        
+    }
+    
+    
+    //TODO
+    public void addAlbum(long groupID, long albumID) {
+        //...
+    }
+    
+    //TODO
+    public void deleteAlbum(long groupID, long albumID) {
+        //...
+    }
 }
