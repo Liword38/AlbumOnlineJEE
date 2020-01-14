@@ -48,9 +48,9 @@ public class CreateGroup implements Serializable {
     }
     
     @PostConstruct
-    public void init() {
-        
-        current=new SempicGroup();
+    public void init() {   
+   
+        current=new SempicGroup(); 
         
     }
     

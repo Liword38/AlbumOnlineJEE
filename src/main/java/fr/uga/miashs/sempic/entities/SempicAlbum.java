@@ -28,12 +28,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Martin
  */
-@NamedEntityGraph(
-        name = "graph.SempicAlbum.albumOwner-sharedWithGrp",
-        attributeNodes = {
-            @NamedAttributeNode("albumOwner"),
-            @NamedAttributeNode("sharedWithGrp"),}
-)
+
 @Entity
 public class SempicAlbum implements Serializable {
     

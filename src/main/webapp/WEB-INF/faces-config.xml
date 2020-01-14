@@ -18,6 +18,8 @@
         </navigation-rule>
     -->
     
+
+    <!-- create-user page -->
     <navigation-rule>
         <description>Create user page</description>
         <from-view-id>*</from-view-id>
@@ -28,6 +30,7 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- create-group page -->
     <navigation-rule>
         <description>Create group page</description>
         <from-view-id>*</from-view-id>
@@ -38,6 +41,18 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- create-album page -->
+    <navigation-rule>
+        <description>Create album page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>create-album</from-outcome>
+            <to-view-id>/user/create-album.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- list-user page -->
     <navigation-rule>
         <description>List users page</description>
         <from-view-id>*</from-view-id>
@@ -48,16 +63,29 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- logout page -->
     <navigation-rule>
         <description>Logout page</description>
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>logout</from-outcome>
-            <to-view-id>/goodbye.xhtml</to-view-id>
+            <to-view-id>/home.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
     
+    <!-- my-groups page -->
+    <navigation-rule>
+        <description>List my-groups page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>my-groups</from-outcome>
+            <to-view-id>/user/my-groups.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- result user creation -->
     <navigation-rule>
         <description>User creation action result</description>
         <from-view-id>*</from-view-id>
@@ -74,6 +102,7 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- result group creation -->
     <navigation-rule>
         <description>Group creation action result</description>
         <from-view-id>user/create-group.xhtml</from-view-id>
@@ -89,10 +118,11 @@
             <to-view-id>#{view.viewId}</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+         
+    <!-- result album creation -->
     <navigation-rule>
-        <description>Action creation action result</description>
-        <from-view-id>/create-album.xhtml</from-view-id>
+        <description>Album creation action result</description>
+        <from-view-id>user/create-album.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{createAlbum.create()}</from-action>
             <from-outcome>success</from-outcome>
@@ -103,6 +133,24 @@
             <from-action>#{createAlbum.create()}</from-action>
             <from-outcome>failure</from-outcome>
             <to-view-id>#{view.viewId}</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- result user deleting -->
+    <navigation-rule>
+        <description>User deleting action result</description>
+        <from-view-id>admin/list-users.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{deleteUser.delete(user.id)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{deleteUser.delete(user.id)}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 

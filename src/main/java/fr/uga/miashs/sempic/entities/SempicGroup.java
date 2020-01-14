@@ -30,10 +30,10 @@ public class SempicGroup implements Serializable {
     @ManyToOne
     private SempicUser grpOwner;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<SempicUser> grpMembers;
 
-    @ManyToMany(mappedBy = "sharedWithGrp")
+    @ManyToMany(mappedBy = "sharedWithGrp", fetch = FetchType.EAGER)
     private Set<SempicAlbum> memberOfAlbums;
 
     public SempicGroup() {
