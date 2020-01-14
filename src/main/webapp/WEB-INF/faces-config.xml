@@ -85,6 +85,16 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-rule>
+        <description>List my-albums page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>my-albums</from-outcome>
+            <to-view-id>/user/my-albums.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
     <!-- result user creation -->
     <navigation-rule>
         <description>User creation action result</description>
