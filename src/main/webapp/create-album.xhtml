@@ -19,13 +19,18 @@ and open the template in the editor.
     <body>
         <h:form>
             <h:panelGrid columns = "3">
-                <label for="name">Nom:</label>
+                <label for="name">Nom :</label>
                 <h:inputText id="name" h5:placeholder="Mon album" value="#{createAlbum.current.name}"/>
                 <h:message for="name"/>
+                
+                <label for="description">Description :</label>
+                <h:inputTextarea id="description" h5:placeholder="Description" value="#{createAlbum.current.description}"/>
+                <h:message for="description"/>
             </h:panelGrid>
             <label>Photos :</label>
-            <h:commandButton value="Créer" action="#{createAlbum.create()}"/>
-
+            <h:commandButton value="Créer" action="#{createAlbum.create()}">
+            <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
+            </h:commandButton>
             <h:messages globalOnly="true"/>
 
         </h:form>

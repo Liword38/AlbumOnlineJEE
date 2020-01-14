@@ -15,30 +15,28 @@
     
         <div style="margin-left: 43%; margin-top: 5%">
             <div>Connecté en tant que: #{sessionTools.connectedUser.firstname}  #{sessionTools.connectedUser.lastname}</div>
-        <h2>Les albums</h2>
+            <h:button outcome="list-users" value="Listes des utilisateurs"/>
+            <span><h2>Mes Albums</h2></span><span></span>
         <h:button outcome="create-album" value="Créer un album"/>
-        
         <h:dataTable id="albums" value="#{listAlbums.dataModel}" var="album">
             <h:column>
-                <h:outputText value="- #{album.name}"/>
+                <h:outputText value="➤ #{album.name}"/>
             </h:column>
         </h:dataTable> 
-        <ul>
-            <li><h:button outcome="create-user" value="Create a user"/></li>
-            <li><h:button outcome="list-users" value="List of users"/></li>
-        </ul>
-        <h2>Les groupes</h2>
+
+            <!--<h:button outcome="create-user" value="Create a user"/>-->
+
+        <h2>Mes groupes</h2>
         <h:button outcome="create-group" value="Créer un groupe"/>
         
         <h:dataTable id="groups" value="#{listGroups.dataModel}" var="group">
             <h:column>
-                <h:outputText value="- #{group.name}"/>
+                <h:outputText value="➤ #{group.name}"/>
+            </h:column>
+            <h:column>
+                <h:button/>
             </h:column>
         </h:dataTable>    
-        <ul>
-            <li>Nom d'un groupe</li>
-            <li>Nom d'un groupe</li>
-        </ul>
         
         <h2>Les photos</h2>
       <!--  <h:button outcome="create-photo" value="Créer une photo"/> -->

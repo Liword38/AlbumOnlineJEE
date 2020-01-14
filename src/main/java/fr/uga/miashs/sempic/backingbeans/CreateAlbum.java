@@ -80,5 +80,15 @@ public class CreateAlbum implements Serializable {
         return "success";
     }
     
+    public String delete() {
+        try {
+            albumDao.delete(current);
+        } catch (SempicModelException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return "failure";
+        }
+        return "success";
+    }
+    
     
 }
