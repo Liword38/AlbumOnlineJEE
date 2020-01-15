@@ -17,18 +17,23 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h:form>
-            <h:panelGrid columns = "3">
+        <h:form enctype='multipart/form-data'>
+            <h:panelGrid columns = "1">
                 <label for="name">Nom:</label>
                 <h:inputText id="name" h5:placeholder="Mon album" value="#{createAlbum.current.name}"/>
                 <h:message for="name"/>
             </h:panelGrid>
-            <label>Photos :</label>
+            <h:panelGrid columns = "1">
+                <label for="description">Description:</label>
+                <h:inputText id="description" h5:placeholder="Description" value="#{createAlbum.current.description}"/>
+            </h:panelGrid>
+
+            <h:inputFile h5:multiple="true" h5:accept="image/*" value="#{createAlbum.photofiles}"/>
+
             <h:commandButton value="Créer" action="#{createAlbum.create()}">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>
-
         </h:form>
     </body>
 </html>
