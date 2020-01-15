@@ -235,7 +235,35 @@
                     </view-param>  
                 </redirect>  
         </navigation-case>  
-    </navigation-rule>     
+    </navigation-rule> 
+    
+    <navigation-rule>  
+        <from-view-id>user/my-groups.xhtml</from-view-id>   
+        <navigation-case>  
+            <from-action>Deleting member</from-action>
+                <to-view-id>user/delete-grpMember.xhtml</to-view-id>  
+                <redirect include-view-params="true">  
+                    <view-param>  
+                    <name>id</name>  
+                    <value>#{deleteGroupMembers.target.id}</value>  
+                    </view-param>  
+                </redirect>  
+        </navigation-case>  
+    </navigation-rule>
+    <!--
+    <navigation-rule>  
+        <from-view-id>user/my-groups.xhtml</from-view-id>   
+        <navigation-case>  
+            <from-action>Adding member</from-action>
+                <to-view-id>user/delete-grpMember.xhtml</to-view-id>  
+                <redirect include-view-params="true">  
+                    <view-param>  
+                    <name>id</name>  
+                    <value>#{editGroupMembers.target.id}</value>  
+                    </view-param>  
+                </redirect>  
+        </navigation-case>  
+    </navigation-rule>     -->
     
 
 </faces-config>
