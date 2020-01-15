@@ -83,6 +83,11 @@ public class SempicUser implements Serializable {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+
     public String getLastname() {
         return lastname;
     }
@@ -138,12 +143,22 @@ public class SempicUser implements Serializable {
         return Collections.unmodifiableSet(groups);
     }
 
+    public void setGroups(Set<SempicGroup> groups) {
+        this.groups = groups;
+    }
+    
+
     public Set<SempicGroup> getMemberOf() {
         if (memberOf == null) {
             return Collections.emptySet();
         }
         return Collections.unmodifiableSet(memberOf);
     }
+
+    public void setMemberOf(Set<SempicGroup> memberOf) {
+        this.memberOf = memberOf;
+    }
+    
 
     public SempicUserType getUserType() {
         return userType;

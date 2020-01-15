@@ -29,7 +29,6 @@ and open the template in the editor.
             </h:panelGrid>
 
             <h:commandButton value="Valider" action="#{editAlbum.update()}">
-                <f:param name="albumId" value="#{editAlbum.target.id}"/>
                 <f:param name="ownerId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>

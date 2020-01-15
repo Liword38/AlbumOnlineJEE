@@ -12,12 +12,14 @@ import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicAlbum;
 import fr.uga.miashs.sempic.entities.SempicGroup;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -28,6 +30,7 @@ import javax.inject.Named;
 public class CreateAlbum implements Serializable {
     
     private SempicAlbum current;
+    private List<Part> photoFiles;
     
     @Inject
     private AlbumFacade albumDao;
@@ -66,6 +69,15 @@ public class CreateAlbum implements Serializable {
     public void setCurrent(SempicAlbum current) {
         this.current = current;
     }
+
+    public List<Part> getPhotoFiles() {
+        return photoFiles;
+    }
+
+    public void setPhotoFiles(List<Part> photoFiles) {
+        this.photoFiles = photoFiles;
+    }
+    
     
     public String create() {
         System.out.println(current);

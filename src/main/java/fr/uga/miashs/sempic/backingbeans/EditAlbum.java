@@ -49,7 +49,6 @@ public class EditAlbum implements Serializable {
     }
 
     public void setOwnerId(String id) {
-        System.out.println(id);
         target.setAlbumOwner(userDao.read(Long.valueOf(id)));
     }
 
