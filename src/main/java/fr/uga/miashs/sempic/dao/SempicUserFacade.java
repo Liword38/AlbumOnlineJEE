@@ -6,6 +6,7 @@
 package fr.uga.miashs.sempic.dao;
 
 import fr.uga.miashs.sempic.SempicModelException;
+import fr.uga.miashs.sempic.entities.SempicAlbum;
 import fr.uga.miashs.sempic.entities.SempicUser;
 import java.util.List;
 import javax.ejb.Stateful;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityGraph;
 import javax.persistence.NamedQuery;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 /**
@@ -47,7 +49,12 @@ public class SempicUserFacade extends AbstractJpaFacade<Long,SempicUser> {
             .getResultList();
     }
     
-    
+    //Retrouve les Users membres du groupe d'id groupId (PAS TESTE)
+    public List<SempicUser> findByMemberOfGrp(long groupId) {
+        TypedQuery<SempicUser> q = getEntityManager().createQuery("SELECT DISTINCT u FROM SempicUser u LEFT JOIN u.grpMembers g WHERE g.id=:groupId", SempicUser.class);
+        q.setParameter("groupId", groupId);
+        return q.getResultList();
+    }
     
     public SempicUser login(String email, String password) throws SempicModelException {
         Query q = getEntityManager().createNamedQuery("query.SempicUser.readByEmail");
@@ -64,6 +71,7 @@ public class SempicUserFacade extends AbstractJpaFacade<Long,SempicUser> {
         q.setParameter("email", email);
         return (SempicUser) q.getSingleResult();
     }
+    
     
     
 }

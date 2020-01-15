@@ -30,7 +30,7 @@ import javax.servlet.http.Part;
 public class CreateAlbum implements Serializable {
     
     private SempicAlbum current;
-    private List<Part> photoFiles;
+    private List<Part>photoFiles;
     
     @Inject
     private AlbumFacade albumDao;
