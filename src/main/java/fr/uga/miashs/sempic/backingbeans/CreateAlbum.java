@@ -69,6 +69,15 @@ public class CreateAlbum implements Serializable {
     public void setCurrent(SempicAlbum current) {
         this.current = current;
     }
+
+    public List<Part> getPhotoFiles() {
+        return photoFiles;
+    }
+
+    public void setPhotoFiles(List<Part> photoFiles) {
+        this.photoFiles = photoFiles;
+    }
+    
     
     public String create() {
         System.out.println(current);

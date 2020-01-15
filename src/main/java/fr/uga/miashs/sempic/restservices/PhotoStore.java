@@ -33,7 +33,7 @@ import javax.ws.rs.core.UriInfo;
  */
 @ApplicationScoped
 @Named
-@Path("/picture/{albumId}/{pictureId}")
+@Path("/photoStore/{albumId}/{pictureId}")
 public class PhotoStore {
 
     @Inject
@@ -43,11 +43,11 @@ public class PhotoStore {
     ServletContext context;
 
     public String getPictureUrl(String path) {
-        return context.getContextPath() + WEB_API + "/picture/" + path;
+        return context.getContextPath() + WEB_API + "/photoStore/" + path;
     }
     
     public String getPictureContextUrl(String path) {
-        return WEB_API + "/picture/" + path;
+        return WEB_API + "/photoStore/" + path;
     }
 
     @GET
