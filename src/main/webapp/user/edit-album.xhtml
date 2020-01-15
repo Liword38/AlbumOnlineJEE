@@ -10,21 +10,23 @@ and open the template in the editor.
       xmlns:h5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewParam name="userId" value="#{createAlbum.ownerId}" />
+        <f:viewParam name="albumId" value="#{editAlbum.target.id}" />
     </f:metadata>
-    <head>
-        <title>Modification de l'album</title>
+    <h:head>
+        <title>Modifier un album</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    </h:head>
     <body>
         <h:form>
             <h:panelGrid columns = "3">
-                <label for="name">Nom:</label>
-                <h:inputText id="name" h5:placeholder="Mon album" value="#{createAlbum.current.name}"/>
+                <label for="name">Nom :</label>
+                <h:inputText id="name" h5:placeholder="Nom" value="#{editAlbum.target.name}"/>
                 <h:message for="name"/>
+                <label for="description">Description :</label>
+                <h:inputTextarea id="description" h5:placeholder="Description" value="#{editAlbum.target.description}"/>
             </h:panelGrid>
-            <label>Photos :</label>
-            <h:commandButton value="Créer" action="#{createAlbum.create()}">
+
+            <h:commandButton value="Valider" action="#{editAlbum.update()}">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>

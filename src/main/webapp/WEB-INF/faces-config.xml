@@ -95,7 +95,9 @@
         </navigation-case>
     </navigation-rule>
     
-    <!-- result user creation -->
+    <!-- CRÉATION -->
+    
+    <!-- User-->
     <navigation-rule>
         <description>User creation action result</description>
         <from-view-id>*</from-view-id>
@@ -112,7 +114,7 @@
         </navigation-case>
     </navigation-rule>
     
-    <!-- result group creation -->
+    <!-- Group-->
     <navigation-rule>
         <description>Group creation action result</description>
         <from-view-id>user/create-group.xhtml</from-view-id>
@@ -129,7 +131,7 @@
         </navigation-case>
     </navigation-rule>
          
-    <!-- result album creation -->
+    <!-- Album -->
     <navigation-rule>
         <description>Album creation action result</description>
         <from-view-id>user/create-album.xhtml</from-view-id>
@@ -146,7 +148,9 @@
         </navigation-case>
     </navigation-rule>
     
-    <!-- result user deleting -->
+    <!-- SUPPRESSIONS -->
+    
+    <!-- User-->
     <navigation-rule>
         <description>User deleting action result</description>
         <from-view-id>admin/list-users.xhtml</from-view-id>
@@ -164,6 +168,7 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- Album -->
     <navigation-rule>
         <description>Album deleting action result</description>
         <from-view-id>user/my-albums.xhtml</from-view-id>
@@ -181,21 +186,56 @@
         </navigation-case>
     </navigation-rule>
     
-        <navigation-rule>
-        <description>Group deleting action result</description>
-        <from-view-id>user/my-groups.xhtml</from-view-id>
+    <!-- Group -->
+    <navigation-rule>
+    <description>Group deleting action result</description>
+    <from-view-id>user/my-groups.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{deleteGroup.delete(group.id)}</from-action>
+        <from-outcome>success</from-outcome>
+        <to-view-id>#{view.viewId}</to-view-id>
+        <redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{deleteGroup.delete(group.id)}</from-action>
+        <from-outcome>failure</from-outcome>
+        <to-view-id>#{view.viewId}</to-view-id>
+        <redirect/>
+    </navigation-case>
+    </navigation-rule>
+    
+    <!-- MODIFICATIONS -->
+
+    <navigation-rule>
+        <description>Album editing action result</description>
+        <from-view-id>user/edit-album.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{deleteGroup.delete(group.id)}</from-action>
+            <from-action>#{editAlbum.update()}</from-action>
             <from-outcome>success</from-outcome>
-            <to-view-id>#{view.viewId}</to-view-id>
+            <to-view-id>user/my-albums.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-action>#{deleteGroup.delete(group.id)}</from-action>
+            <from-action>#{editAlbum.update()}</from-action>
             <from-outcome>failure</from-outcome>
             <to-view-id>#{view.viewId}</to-view-id>
             <redirect/>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule>   
+    
+    <navigation-rule>  
+        <from-view-id>user/my-albums.xhtml</from-view-id>   
+        <navigation-case>  
+            <from-action>Editing album</from-action>
+                <to-view-id>user/edit-album.xhtml</to-view-id>  
+                <redirect include-view-params="true">  
+                    <view-param>  
+                    <name>id</name>  
+                    <value>#{editAlbum.target.id}</value>  
+                    </view-param>  
+                </redirect>  
+        </navigation-case>  
+    </navigation-rule>     
+    
 
 </faces-config>

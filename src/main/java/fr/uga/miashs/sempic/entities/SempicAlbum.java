@@ -52,6 +52,7 @@ public class SempicAlbum implements Serializable {
     //TODO: Mettre des vrais photos  &  mapping
     @OneToMany(mappedBy = "inAlbum", cascade = CascadeType.REMOVE )
     private Set<SempicPhoto> photos;
+    
 
     public SempicAlbum() {
 
@@ -116,6 +117,7 @@ public class SempicAlbum implements Serializable {
     public void setPhotos(Set<SempicPhoto> photos) {
         this.photos = photos;
     }
+    
 
     @Override
     public int hashCode() {
@@ -124,9 +126,6 @@ public class SempicAlbum implements Serializable {
         return hash;
     }
 
-   
-
- 
 
     @Override
     public boolean equals(Object obj) {

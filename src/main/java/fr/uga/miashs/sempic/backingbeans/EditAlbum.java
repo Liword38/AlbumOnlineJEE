@@ -36,6 +36,7 @@ public class EditAlbum {
     public void init() {
         target = new SempicAlbum();
     }
+ 
     
     public SempicAlbum getTarget() {
         return target;
@@ -45,13 +46,10 @@ public class EditAlbum {
         this.target = target;
     }
     
-    public String update(String name, String description) {
+    public String update() {
+        
         try {
-        //Surement à chier
-            SempicAlbum aModifier = this.getTarget();
-            aModifier.setDescription(description);
-            aModifier.setName(name);
-            albumDao.update(aModifier);
+            albumDao.update(target);
         
         }
         catch (SempicModelException ex) {
