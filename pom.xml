@@ -58,7 +58,7 @@
             <artifactId>org.eclipse.persistence.moxy</artifactId>
             <version>2.5.0</version>
             <type>jar</type>
-        </dependency>
+        </dependency>      
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
