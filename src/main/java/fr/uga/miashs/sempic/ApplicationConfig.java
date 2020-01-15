@@ -119,7 +119,6 @@ public class ApplicationConfig {
         p.setContent("Une magnifique photo (pour le moment une photo est une string)");
         p.setInAlbum(a);
 
-        
         try {
             userFacade.create(admin);
 
