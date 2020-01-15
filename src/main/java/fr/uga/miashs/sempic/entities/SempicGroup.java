@@ -43,6 +43,7 @@ public class SempicGroup implements Serializable {
     public long getId() {
         return id;
     }
+    
 
     public String getName() {
         return name;

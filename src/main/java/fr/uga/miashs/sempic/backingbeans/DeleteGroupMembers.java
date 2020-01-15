@@ -60,12 +60,12 @@ public class DeleteGroupMembers {
     }
 
     public String getOwnerId() {
-        
-        if (target.getOwner() == null) {
+        if(target.getOwner() == null) {
             return "-1";
         }
-        return "" + target.getOwner().getId();  
+        return "" + target.getOwner().getId();
     }
+
     
     public String delete(long memberId) {
         try {
