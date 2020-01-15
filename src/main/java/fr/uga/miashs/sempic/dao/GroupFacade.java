@@ -24,6 +24,12 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
         super(SempicGroup.class);
     }
 
+    public List<SempicGroup> findSharedGroups(long userId) {
+        TypedQuery<SempicGroup> q = getEntityManager().createQuery("SELECT DISTINCT g FROM SempicGroup g LEFT JOIN g.grpMembers m WHERE m.id=:userId", SempicGroup.class);
+        q.setParameter("userId", userId);
+        return q.getResultList();
+    }
+    
     public List<SempicGroup> findAllByOwner(long userId) {
         TypedQuery<SempicGroup> q = getEntityManager().createQuery("SELECT DISTINCT g FROM SempicGroup g, SempicUser u WHERE u.id=:userId AND g.grpOwner=u", SempicGroup.class);
         q.setParameter("userId", userId);
@@ -31,14 +37,14 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
     }
 
     public void addMember(long groupId, long userId) {
-        Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICGROUP_SEMPICUSER(MEMBERS_ID,MEMBEROF_ID) VALUES (?1,?2)");
+        Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICGROUP_SEMPICUSER(GRPMEMBERS_ID,MEMBEROF_ID) VALUES (?1,?2)");
         q.setParameter(1, userId);
         q.setParameter(2, groupId);
         q.executeUpdate();
     }
 
     public void deleteMember(long groupId, long userId) {
-        Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICGROUP_SEMPICUSER WHERE MEMBERS_ID=?1 AND MEMBEROF_ID=?2");
+        Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICGROUP_SEMPICUSER WHERE GRPMEMBERS_ID=?1 AND MEMBEROF_ID=?2");
         q.setParameter(1, userId);
         q.setParameter(2, groupId);
         q.executeUpdate();
