@@ -103,7 +103,7 @@ public class PhotoStorage {
 
             }
         } catch (IOException ex) {
-            throw new SempicException("Failed to copy the photo", ex);
+            throw new SempicException("Failed to delete the photo", ex);
         }
     }
     

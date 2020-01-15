@@ -40,6 +40,7 @@ public class SempicAlbum implements Serializable {
     @NotNull
     @ManyToOne
     private SempicUser albumOwner;
+        
     
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<SempicGroup> sharedWithGrp;

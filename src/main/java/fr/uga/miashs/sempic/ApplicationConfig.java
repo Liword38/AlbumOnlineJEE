@@ -70,7 +70,6 @@ Works only for glassfish (ie JavaEE8 fully compliant server), for tomm use web.x
 @Startup
 public class ApplicationConfig {
 
-
     public final static String DATA_SOURCE = "java:app/sempicdb";
     public final static String WEB_API = "";
 
@@ -85,8 +84,7 @@ public class ApplicationConfig {
     private AlbumFacade albumFacade;
     @Inject
     private PhotoFacade photoFacade;
-    
-    
+
     @PostConstruct
     public void init() {
         //Create Admin
@@ -97,32 +95,50 @@ public class ApplicationConfig {
         admin.setUserType(SempicUserType.ADMIN);
         admin.setPasswordHash(passwordHash.generate("admin".toCharArray()));
 
+        //Create UserTest
+        SempicUser userTest = new SempicUser();
+        userTest.setFirstname("User");
+        userTest.setLastname("Test");
+        userTest.setEmail("user@user");
+        userTest.setUserType(SempicUserType.USER);
+        userTest.setPasswordHash(passwordHash.generate("user".toCharArray()));
+
         //Create Admin Group
         SempicGroup g = new SempicGroup();
         g.setName("admins");
         g.setOwner(admin);
-           
+
         //Create Admin's Album
         SempicAlbum a = new SempicAlbum();
         a.setName("L'album de l'admin");
         a.setDescription("Cet album sert à tester l'app");
         a.setAlbumOwner(admin);
-        
+
         //Create Photo for Admin's Album
         SempicPhoto p = new SempicPhoto();
         p.setContent("Une magnifique photo (pour le moment une photo est une string)");
         p.setInAlbum(a);
-        
+
         
         try {
             userFacade.create(admin);
-            groupFacade.create(g);
-            albumFacade.create(a);
-            photoFacade.create(p);
-            
+
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin created");
         } catch (SempicModelException e) {
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin already exists");
+        }
+        
+        try {
+            userFacade.create(userTest);
+            groupFacade.create(g);
+            //Ajoute UserTest au groupe de l'admin
+            groupFacade.addMember(g.getId(), userTest.getId());
+            albumFacade.create(a);
+            photoFacade.create(p);
+            
+            Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data created");
+         } catch (SempicModelException e) {
+            Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data failed to create");
         }
 
     }

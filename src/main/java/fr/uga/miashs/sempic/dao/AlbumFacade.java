@@ -25,16 +25,17 @@ public class AlbumFacade extends AbstractJpaFacade<Long, SempicAlbum> {
     }
     
    public List<SempicAlbum> findAllByOwner(long userId) {
-        System.out.println("A l'intérieur de findAllByOwner()");
         TypedQuery<SempicAlbum> q = getEntityManager().createQuery("SELECT DISTINCT a FROM SempicAlbum a, SempicUser u WHERE u.id=:userId AND a.albumOwner=u", SempicAlbum.class);
         q.setParameter("userId", userId);
         return q.getResultList();
     }
     
     //Pas testé probablement faux
-    public List<SempicAlbum> findByUser(Long userId) {
-        Query q;
-        q = getEntityManager().createNativeQuery("SELECT DISTINCT a FROM SempicAlbum a WHERE a.sempicalbum_id IN(SELECT g FROM SempicGroup g WHERE g.members_id=:userId) AND a.sempicalbum_id=g.memberofalbum_id");
+    public List<SempicAlbum> findAllByUser(long userId) {
+        TypedQuery<SempicAlbum> q;
+        q = getEntityManager().createQuery("SELECT DISTINCT a "
+                                        + " FROM SempicAlbum a, SempicGroup g, SempicUser u "
+                                        + " WHERE  a.id=g.memberOfAlbums AND g.id=u.grpMembers_id",SempicAlbum.class);
         q.setParameter("userId", userId);
         return q.getResultList();
 

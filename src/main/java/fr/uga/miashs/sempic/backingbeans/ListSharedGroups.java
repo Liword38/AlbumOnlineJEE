@@ -5,11 +5,8 @@
  */
 package fr.uga.miashs.sempic.backingbeans;
 
-import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.dao.GroupFacade;
-import fr.uga.miashs.sempic.entities.SempicAlbum;
 import fr.uga.miashs.sempic.entities.SempicGroup;
-import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -22,20 +19,19 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class ListSharedAlbums implements Serializable{
-    
-     private DataModel<SempicAlbum> dataModel;
+public class ListSharedGroups {
+    private DataModel<SempicGroup> dataModel;
     
     @Inject
-    private AlbumFacade albumDao;    
+    private GroupFacade groupDao;
     @Inject
     private SessionTools sessionTools;
     
-    //Pas testé, marche surement pas
-    public DataModel<SempicAlbum> getDataModel() {
-        long currentUserId = sessionTools.getConnectedUser().getId();
+    public DataModel<SempicGroup> getDataModel() {
+        long currentUserID = sessionTools.getConnectedUser().getId();
+        
         if (dataModel == null) {
-            dataModel = new ListDataModel<>(albumDao.findAllByUser(currentUserId));
+            dataModel = new ListDataModel<>(groupDao.findSharedGroups(currentUserID));
         }
         return dataModel;
     }
