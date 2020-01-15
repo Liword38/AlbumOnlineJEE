@@ -44,6 +44,20 @@ public class SempicGroup implements Serializable {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    public Set<SempicAlbum> getMemberOfAlbums() {
+        return memberOfAlbums;
+    }
+
+    public void setMemberOfAlbums(Set<SempicAlbum> memberOfAlbums) {
+        this.memberOfAlbums = memberOfAlbums;
+    }
+    
+    
+
     public String getName() {
         return name;
     }
