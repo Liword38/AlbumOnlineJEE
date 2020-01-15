@@ -153,11 +153,11 @@ public class SempicAlbum implements Serializable {
 
     @Override
     public String toString() {
-        return "SempicAlbum{" + "id=" + id + ", albumOwner=" + albumOwner.getFirstname() + ", description=" + description + ", name=" + name + '}';
+        return "SempicAlbum{" + "id=" + id + ", description=" + description + ", name=" + name + '}';
     }
 
  
+
+ 
   
-
-
 }

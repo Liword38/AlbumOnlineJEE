@@ -35,9 +35,9 @@ public class CreateAlbum implements Serializable {
     @Inject
     private SempicUserFacade userDao;
     
-    @Inject 
-    private GroupFacade groupDao;
-    
+//    @Inject 
+//    private GroupFacade groupDao;
+
     public CreateAlbum(){
         
     }
