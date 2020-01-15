@@ -31,7 +31,6 @@ public class ListSharedGroups {
         long currentUserID = sessionTools.getConnectedUser().getId();
         
         if (dataModel == null) {
-            System.out.println("appel à findAllByOwner()");
             dataModel = new ListDataModel<>(groupDao.findSharedGroups(currentUserID));
         }
         return dataModel;

@@ -121,16 +121,23 @@ public class ApplicationConfig {
 
         try {
             userFacade.create(admin);
-           // userFacade.create(userTest);
-            groupFacade.create(g);
-            //Ajoute UserTest au groupe de l'admin
-            //groupFacade.addMember(g.getId(), userTest.getId());
-            albumFacade.create(a);
-            photoFacade.create(p);
 
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin created");
         } catch (SempicModelException e) {
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Admin already exists");
+        }
+        
+        try {
+            userFacade.create(userTest);
+            groupFacade.create(g);
+            //Ajoute UserTest au groupe de l'admin
+            groupFacade.addMember(g.getId(), userTest.getId());
+            albumFacade.create(a);
+            photoFacade.create(p);
+            
+            Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data created");
+         } catch (SempicModelException e) {
+            Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data failed to create");
         }
 
     }

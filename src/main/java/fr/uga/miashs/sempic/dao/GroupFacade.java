@@ -24,12 +24,14 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
         super(SempicGroup.class);
     }
 
+    //Récupère les groupes partagés avec l'utilisateur d'id userId
     public List<SempicGroup> findSharedGroups(long userId) {
         TypedQuery<SempicGroup> q = getEntityManager().createQuery("SELECT DISTINCT g FROM SempicGroup g LEFT JOIN g.grpMembers m WHERE m.id=:userId", SempicGroup.class);
         q.setParameter("userId", userId);
         return q.getResultList();
     }
     
+    //Récupères les groupes dont le propriétaire a comme id userId
     public List<SempicGroup> findAllByOwner(long userId) {
         TypedQuery<SempicGroup> q = getEntityManager().createQuery("SELECT DISTINCT g FROM SempicGroup g, SempicUser u WHERE u.id=:userId AND g.grpOwner=u", SempicGroup.class);
         q.setParameter("userId", userId);

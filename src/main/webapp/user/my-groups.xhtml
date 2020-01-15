@@ -31,8 +31,15 @@
                 </h:column>
                 
                 <h:column>
+                    <h:commandButton value="Ajouter quelqu'un" action="#{deleteGroup.delete(group.id)}"/>                  
+                </h:column>
+                
+                <h:column>
                     <h:commandButton value="Supprimer" action="#{deleteGroup.delete(group.id)}"/>                  
                 </h:column>
+                
+                
+                
                 
                 
             </h:dataTable>
