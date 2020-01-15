@@ -57,7 +57,7 @@ and open the template in the editor.
                     
                     <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
                     <h:commandButton action="Editing album" value="Modifier">
-                        <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target}"/>
+                        <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target.id}"/>
                         
                     </h:commandButton>
 

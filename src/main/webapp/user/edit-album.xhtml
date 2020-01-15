@@ -10,7 +10,8 @@ and open the template in the editor.
       xmlns:h5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewParam name="albumId" value="#{editAlbum.target.id}" />
+        <f:viewParam name="id" value="#{editAlbum.target.id}" />
+        <f:viewParam name="ownerId" value="#{editAlbum.ownerId}" />  
     </f:metadata>
     <h:head>
         <title>Modifier un album</title>
@@ -18,6 +19,7 @@ and open the template in the editor.
     </h:head>
     <body>
         <h:form>
+
             <h:panelGrid columns = "3">
                 <label for="name">Nom :</label>
                 <h:inputText id="name" h5:placeholder="Nom" value="#{editAlbum.target.name}"/>
@@ -27,7 +29,8 @@ and open the template in the editor.
             </h:panelGrid>
 
             <h:commandButton value="Valider" action="#{editAlbum.update()}">
-                <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
+                <f:param name="albumId" value="#{editAlbum.target.id}"/>
+                <f:param name="ownerId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>
 
