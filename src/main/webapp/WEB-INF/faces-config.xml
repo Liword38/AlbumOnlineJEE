@@ -245,12 +245,12 @@
                 <redirect include-view-params="true">  
                     <view-param>  
                     <name>id</name>  
-                    <value>#{editGroupMembers.target.id}</value>  
+                    <value>#{deleteGroupMembers.target.id}</value>  
                     </view-param>  
                 </redirect>  
         </navigation-case>  
     </navigation-rule>
-    
+    <!--
     <navigation-rule>  
         <from-view-id>user/my-groups.xhtml</from-view-id>   
         <navigation-case>  
@@ -263,7 +263,7 @@
                     </view-param>  
                 </redirect>  
         </navigation-case>  
-    </navigation-rule>     
+    </navigation-rule>     -->
     
 
 </faces-config>

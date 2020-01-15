@@ -31,15 +31,17 @@
                 </h:column>
                 
                 <h:column>
-                    <h:commandButton value="Ajouter membre(s)" action="#Adding member">
+                    <h:commandButton value="Ajouter membre(s)" action="Adding member">
                         <f:param/>
                     </h:commandButton>                  
                 </h:column>
                 
                 <h:column>
+                    
                     <h:commandButton value="Supprimer membre(s)" action="Deleting member">
-                        <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMember.target.id}"/>
+                        <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMembers.target.id}"/>
                     </h:commandButton>
+                    
                 </h:column>
                 
                 <h:column>
