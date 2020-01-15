@@ -62,6 +62,11 @@ public class SempicAlbum implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
     public SempicUser getAlbumOwner() {
         return albumOwner;
     }

@@ -34,7 +34,6 @@ public class ListMyAlbums {
         long currentUserID = sessionTools.getConnectedUser().getId();
         
         if (dataModel == null) {
-            System.out.println("appel à findAllByOwner()");
             dataModel = new ListDataModel<>(albumDao.findAllByOwner(currentUserID));
         }
         return dataModel;

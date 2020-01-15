@@ -115,7 +115,7 @@
     <!-- result group creation -->
     <navigation-rule>
         <description>Group creation action result</description>
-        <from-view-id>user/create-group.xhtml</from-view-id>
+        <from-view-id>/user/create-group.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{createGroup.create()}</from-action>
             <from-outcome>success</from-outcome>
@@ -132,7 +132,7 @@
     <!-- result album creation -->
     <navigation-rule>
         <description>Album creation action result</description>
-        <from-view-id>user/create-album.xhtml</from-view-id>
+        <from-view-id>/user/create-album.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{createAlbum.create()}</from-action>
             <from-outcome>success</from-outcome>
@@ -149,7 +149,7 @@
     <!-- result user deleting -->
     <navigation-rule>
         <description>User deleting action result</description>
-        <from-view-id>admin/list-users.xhtml</from-view-id>
+        <from-view-id>/admin/list-users.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{deleteUser.delete(user.id)}</from-action>
             <from-outcome>success</from-outcome>
@@ -166,7 +166,7 @@
     
     <navigation-rule>
         <description>Album deleting action result</description>
-        <from-view-id>user/my-albums.xhtml</from-view-id>
+        <from-view-id>/user/my-albums.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{deleteAlbum.delete(album.id)}</from-action>
             <from-outcome>success</from-outcome>
@@ -183,7 +183,7 @@
     
         <navigation-rule>
         <description>Group deleting action result</description>
-        <from-view-id>user/my-groups.xhtml</from-view-id>
+        <from-view-id>/user/my-groups.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{deleteGroup.delete(group.id)}</from-action>
             <from-outcome>success</from-outcome>

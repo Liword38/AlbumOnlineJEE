@@ -17,7 +17,7 @@ and open the template in the editor.
         <h:form>
             <h:dataTable value="#{listMyAlbums.dataModel}" var="album"
                          rules="all">
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nom" />
@@ -25,7 +25,7 @@ and open the template in the editor.
 
                     <h:outputText value="#{album.name}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Description" />
@@ -33,26 +33,67 @@ and open the template in the editor.
 
                     <h:outputText value="#{album.description}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Partagé avec" />
                     </f:facet>
-                    
+
                     <ui:repeat value="#{album.sharedWithGrp}" var="m">
                         <h:outputText value="#{m.name} | "/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
-                   <!-- <h:commandButton value="Modifier" action=""/> -->
+                    <!-- <h:commandButton value="Modifier" action=""/> -->
                     <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
-                    
+
                 </h:column>
-                
-                
+
+
             </h:dataTable>
         </h:form>
-        
-        <h2>Les Groupes partagés avec moi</h2>
+
+        <h2>Les albums partagés dans un groupe auquel j'appartiens</h2>
+
+        <h:dataTable value="#{listSharedAlbums.dataModel}" var="album"
+                     rules="all">
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nom" />
+                </f:facet>
+
+                <h:outputText value="#{album.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Description" />
+                </f:facet>
+
+                <h:outputText value="#{album.description}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Auteur" />
+                </f:facet>
+                
+                <h:outputText value="#{album.albumOwner.firstname}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Partagé dans les groupes" />
+                </f:facet>
+
+                <ui:repeat value="#{album.sharedWithGrp}" var="m">
+                    <h:outputText value="#{m.name} | "/>
+                </ui:repeat>
+            </h:column>
+
+
+
+        </h:dataTable>
     </h:body>
 </html>

@@ -14,6 +14,7 @@ import fr.uga.miashs.sempic.dao.PhotoFacade;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicAlbum;
 import fr.uga.miashs.sempic.entities.SempicPhoto;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -24,6 +25,7 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import javax.ws.rs.core.Application;
 
 /**
  * In this class, some generic application config are given
@@ -68,7 +70,8 @@ Works only for glassfish (ie JavaEE8 fully compliant server), for tomm use web.x
 @Singleton
 @Named
 @Startup
-public class ApplicationConfig {
+@javax.ws.rs.ApplicationPath("webresources")
+public class ApplicationConfig extends Application{
 
     public final static String DATA_SOURCE = "java:app/sempicdb";
     public final static String WEB_API = "";
@@ -133,6 +136,8 @@ public class ApplicationConfig {
             //Ajoute UserTest au groupe de l'admin
             groupFacade.addMember(g.getId(), userTest.getId());
             albumFacade.create(a);
+            System.out.println("On va ajouter un album dans un groupe");
+            groupFacade.addAlbum(g.getId(), a.getId());
             photoFacade.create(p);
             
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data created");
@@ -140,6 +145,24 @@ public class ApplicationConfig {
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data failed to create");
         }
 
+    }
+    
+    
+     @Override
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> resources = new java.util.HashSet<>();
+        addRestResourceClasses(resources);
+        return resources;
+    }
+
+    /**
+     * Do not modify addRestResourceClasses() method.
+     * It is automatically populated with
+     * all resources defined in the project.
+     * If required, comment out calling this method in getClasses().
+     */
+    private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(fr.uga.miashs.sempic.restservices.PhotoStore.class);
     }
 
 }
