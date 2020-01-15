@@ -25,16 +25,24 @@ import javax.inject.Named;
 public class ListUsers {
 
     private DataModel<SempicUser> dataModel;
+    private DataModel<SempicUser> membersOfDataModel;
 
     @Inject
     private SempicUserFacade userDao;
 
-    
     public DataModel<SempicUser> getDataModel() {
         if (dataModel == null) {
             dataModel = new ListDataModel<>(userDao.findAll());
         }
         return dataModel;
     }
-    
+
+    public DataModel<SempicUser> getMembersOfDataModel(Integer groupId) {
+        System.out.println("On cherche des membres");
+        if (membersOfDataModel == null) {
+            membersOfDataModel = new ListDataModel<>(userDao.findByMemberOfGrp(Long.valueOf(groupId)));
+        }
+        return membersOfDataModel;
+    }
+
 }

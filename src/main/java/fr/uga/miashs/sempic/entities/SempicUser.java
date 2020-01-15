@@ -68,7 +68,7 @@ public class SempicUser implements Serializable {
     @OneToMany(mappedBy = "grpOwner", cascade = CascadeType.REMOVE)
     private Set<SempicGroup> groups;
 
-    @ManyToMany(mappedBy = "grpMembers",cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "grpMembers", fetch=FetchType.EAGER)
     private Set<SempicGroup> memberOf;
 
     @Enumerated(EnumType.STRING)

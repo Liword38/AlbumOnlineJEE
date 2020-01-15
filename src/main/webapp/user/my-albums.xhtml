@@ -54,12 +54,12 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h:outputText value="Actions"/>
                     </f:facet>
-
-                    <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
+                    
                     <h:commandButton action="Editing album" value="Modifier">
                         <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target.id}"/>
 
                     </h:commandButton>
+                    <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
 
                 </h:column>
 

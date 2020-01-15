@@ -14,13 +14,13 @@ and open the template in the editor.
         <f:viewParam name="ownerId" value="#{deleteGroupMembers.ownerId}" />  
     </f:metadata>
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Supprimer un Membre du groupe</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
         <h:form>
 
-            <h:dataTable value="#{deleteGroupMembers.target.grpMembers}" var="member" rules="all">
+            <h:dataTable value="#{listUsers.getMembersOfDataModel(id)}" var="member" rules="all">
                 
                 <h:column>
                     <f:facet name="header">
