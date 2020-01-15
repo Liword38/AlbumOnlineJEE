@@ -6,11 +6,8 @@
 package fr.uga.miashs.sempic.dao;
 
 import fr.uga.miashs.sempic.entities.SempicAlbum;
-import fr.uga.miashs.sempic.entities.SempicGroup;
-import fr.uga.miashs.sempic.entities.SempicUser;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
