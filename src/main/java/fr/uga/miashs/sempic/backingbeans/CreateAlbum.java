@@ -13,6 +13,7 @@ import fr.uga.miashs.sempic.dao.PhotoFacade;
 import fr.uga.miashs.sempic.dao.PhotoStorage;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicAlbum;
+import fr.uga.miashs.sempic.entities.SempicGroup;
 import fr.uga.miashs.sempic.entities.SempicPhoto;
 import java.io.IOException;
 import java.io.Serializable;
@@ -50,7 +51,6 @@ public class CreateAlbum implements Serializable {
     private GroupFacade groupDao;
     @Inject
     private PhotoStorage photoStorage;
-    
 
     public CreateAlbum() {
 
@@ -83,7 +83,6 @@ public class CreateAlbum implements Serializable {
 //        }
 //    return "succes";
 //    }
-        
     public void setOwnerId(String id) {
         System.out.println(id);
         current.setAlbumOwner(userDao.read(Long.valueOf(id)));
@@ -115,24 +114,38 @@ public class CreateAlbum implements Serializable {
     public String create() {
         System.out.println(current);
 
-        for(Part p : photoFiles){
-            try {
-                SempicPhoto currentPhoto = new SempicPhoto();
-                String name = p.getSubmittedFileName();
-                currentPhoto.setName(name);
-                photoDao.create(currentPhoto);
-                try {
-                    photoStorage.savePicture(Paths.get(Long.toString(current.getId()), Long.toString(currentPhoto.getId())), p.getInputStream());
-                } catch (IOException | SempicException ex) {
-                    Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
-                return "failure";
-                }
-            } catch (SempicModelException ex) {
-                Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
-                return "failure";
-            }
+        try {
+            albumDao.create(current);
+        } catch (SempicModelException ex) {
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return "failure";
         }
-    return "succes";
+
+        return "success";
     }
+
+//    public String create() {
+//        System.out.println(current);
+//
+//        for (Part p : photoFiles) {
+//            try {
+//                SempicPhoto currentPhoto = new SempicPhoto();
+//                String name = p.getSubmittedFileName();
+//                currentPhoto.setName(name);
+//                photoDao.create(currentPhoto);
+//                albumDao.create(current);
+//                try {
+//                    photoStorage.savePicture(Paths.get(Long.toString(current.getId()), Long.toString(currentPhoto.getId())), p.getInputStream());
+//                } catch (IOException | SempicException ex) {
+//                    Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+//                    return "failure";
+//                }
+//            } catch (SempicModelException ex) {
+//                Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+//                return "failure";
+//            }
+//        }
+//        return "succes";
+//    }
 
 }

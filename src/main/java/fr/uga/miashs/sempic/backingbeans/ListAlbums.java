@@ -22,7 +22,13 @@ import javax.inject.Named;
 public class ListAlbums {
 
     private DataModel<SempicAlbum> dataModel;
+    
+    private SempicAlbum soloAlbum;
 
+    public ListAlbums() {
+    }
+
+    
     @Inject
     private AlbumFacade albumDao;
 
@@ -31,6 +37,13 @@ public class ListAlbums {
             dataModel = new ListDataModel<>(albumDao.findAll());
         }
         return dataModel;
+    }
+    
+    public SempicAlbum getSoloAlbum(long albumId) {      
+        if (soloAlbum == null) {
+        soloAlbum = albumDao.read(albumId);
+        }
+        return soloAlbum;
     }
     
     
