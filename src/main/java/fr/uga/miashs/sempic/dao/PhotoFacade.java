@@ -6,7 +6,9 @@
 package fr.uga.miashs.sempic.dao;
 
 import fr.uga.miashs.sempic.entities.SempicPhoto;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -19,8 +21,10 @@ public class PhotoFacade extends AbstractJpaFacade<Long,SempicPhoto> {
         super(SempicPhoto.class);
     }
     
-    //TODO
-    public void findByAlbum() {
-        
+    //Renvoie les photos de l'album d'id albumId (PAS TESTE)
+    public List<SempicPhoto> findByAlbum(long albumId) {
+        TypedQuery<SempicPhoto> q = getEntityManager().createQuery("SELECT DISTINCT p FROM SempicPhoto WHERE p.inAlbum=:albumId",SempicPhoto.class);
+        q.setParameter("albumId", albumId);
+        return q.getResultList();
     }
 }

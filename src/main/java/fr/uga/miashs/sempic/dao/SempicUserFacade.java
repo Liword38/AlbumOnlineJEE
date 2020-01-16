@@ -50,6 +50,7 @@ public class SempicUserFacade extends AbstractJpaFacade<Long, SempicUser> {
     public List<SempicUser> findByMemberOfGrp(long groupId) {
         TypedQuery<SempicUser> q = getEntityManager().createQuery("SELECT DISTINCT u FROM SempicUser u LEFT JOIN u.memberOf g WHERE g.id=:groupId", SempicUser.class);
         q.setParameter("groupId", groupId);
+        System.out.println("On vérifie la nullité des membres");
         if (q.getResultList() == null) {
             System.out.println("On a pas toruvé de membre...");
             List<SempicUser> members = new ArrayList<SempicUser>();

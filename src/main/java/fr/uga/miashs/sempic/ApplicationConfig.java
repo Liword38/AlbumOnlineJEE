@@ -118,9 +118,9 @@ public class ApplicationConfig extends Application{
         a.setAlbumOwner(admin);
 
         //Create Photo for Admin's Album
-        SempicPhoto p = new SempicPhoto();
-        p.setContent("Une magnifique photo (pour le moment une photo est une string)");
-        p.setInAlbum(a);
+//        SempicPhoto p = new SempicPhoto();
+//        p.setName("Une magnifique photo (pour le moment une photo est une string)");
+//        p.setInAlbum(a);
 
         try {
             userFacade.create(admin);
@@ -138,7 +138,7 @@ public class ApplicationConfig extends Application{
             albumFacade.create(a);
             System.out.println("On va ajouter un album dans un groupe");
             groupFacade.addAlbum(g.getId(), a.getId());
-            photoFacade.create(p);
+          //  photoFacade.create(p);
             
             Logger.getLogger(ApplicationConfig.class.getName()).log(Level.WARNING, "Static data created");
          } catch (SempicModelException e) {

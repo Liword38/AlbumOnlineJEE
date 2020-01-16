@@ -27,56 +27,53 @@ import javax.inject.Named;
 @RequestScoped
 public class DeleteGroupMembers {
 
-    
     private SempicGroup target;
-    
+
     @Inject
     private GroupFacade groupDao;
-    
+
     @Inject
     private SempicUserFacade memberDao;
-    
-    
+
     public DeleteGroupMembers() {
-        
+
     }
-    
+
     @PostConstruct
     public void init() {
         target = new SempicGroup();
     }
-    
+
     public SempicGroup getTarget() {
         return target;
     }
-    
+
     public void setTarget(SempicGroup target) {
         this.target = target;
     }
-    
+
     public void setOwnerId(String id) {
         System.out.println(id);
         target.setOwner(memberDao.read(Long.valueOf(id)));
     }
 
     public String getOwnerId() {
-        
+
         if (target.getOwner() == null) {
             return "-1";
         }
-        return "" + target.getOwner().getId();  
+        return "" + target.getOwner().getId();
     }
-    
+
     public String delete(long memberId) {
         try {
             memberDao.deleteById(memberId);
-        }
-        catch (SempicModelException ex) {
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        } catch (SempicModelException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return "failure";
         }
-        
+
         return "success";
     }
-   
+
 }

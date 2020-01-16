@@ -5,12 +5,22 @@
  */
 package fr.uga.miashs.sempic.backingbeans;
 
+import fr.uga.miashs.sempic.SempicException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.dao.AlbumFacade;
+import fr.uga.miashs.sempic.dao.GroupFacade;
+import fr.uga.miashs.sempic.dao.PhotoFacade;
+import fr.uga.miashs.sempic.dao.PhotoStorage;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicAlbum;
+import fr.uga.miashs.sempic.entities.SempicPhoto;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -26,44 +36,70 @@ import javax.servlet.http.Part;
 @Named
 @ViewScoped
 public class CreateAlbum implements Serializable {
-    
+
     private SempicAlbum current;
-    private List<Part>photoFiles;
-    
+    private ArrayList<Part> photoFiles;
+
+    @Inject
+    private PhotoFacade photoDao;
     @Inject
     private AlbumFacade albumDao;
-    
     @Inject
     private SempicUserFacade userDao;
+    @Inject
+    private GroupFacade groupDao;
+    @Inject
+    private PhotoStorage photoStorage;
     
-//    @Inject 
-//    private GroupFacade groupDao;
 
-    public CreateAlbum(){
-        
+    public CreateAlbum() {
+
     }
-    
+
+    //Crée l'entité SempicAlbum ainsi que les SempicPhotos associées
     @PostConstruct
-    public void init() {   
-        current=new SempicAlbum();
-        
+    public void init() {
+        current = new SempicAlbum();
     }
-    
+
+    //Ajoute à l'album séléctionné les photos ajoutées par l'user
+//    public String addPhotos() {
+//    for(Part p : photoFiles){
+//            try {
+//                SempicPhoto currentPhoto = new SempicPhoto();
+//                String name = p.getSubmittedFileName();
+//                currentPhoto.setName(name);
+//                photoDao.create(currentPhoto);
+//                try {
+//                    photoStorage.savePicture(Paths.get(Long.toString(current.getId()), Long.toString(currentPhoto.getId())), p.getInputStream());
+//                } catch (IOException | SempicException ex) {
+//                    Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+//                return "failure";
+//                }
+//            } catch (SempicModelException ex) {
+//                Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+//                return "failure";
+//            }
+//        }
+//    return "succes";
+//    }
+        
     public void setOwnerId(String id) {
-        System.out.println(id); 
+        System.out.println(id);
         current.setAlbumOwner(userDao.read(Long.valueOf(id)));
     }
-    
+
     public String getOwnerId() {
-        if (current.getAlbumOwner()==null)
+        if (current.getAlbumOwner() == null) {
             return "-1";
-        return ""+current.getAlbumOwner().getId();
+        }
+        return "" + current.getAlbumOwner().getId();
     }
-    
+
     public SempicAlbum getCurrent() {
         return current;
     }
-    
+
     public void setCurrent(SempicAlbum current) {
         this.current = current;
     }
@@ -72,24 +108,31 @@ public class CreateAlbum implements Serializable {
         return photoFiles;
     }
 
-    public void setPhotoFiles(List<Part> photoFiles) {
+    public void setPhotoFiles(ArrayList<Part> photoFiles) {
         this.photoFiles = photoFiles;
     }
-    
-    
+
     public String create() {
         System.out.println(current);
-        
-        try {
-            albumDao.create(current);
-        } catch (SempicModelException ex) {
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
-            return "failure";
+
+        for(Part p : photoFiles){
+            try {
+                SempicPhoto currentPhoto = new SempicPhoto();
+                String name = p.getSubmittedFileName();
+                currentPhoto.setName(name);
+                photoDao.create(currentPhoto);
+                try {
+                    photoStorage.savePicture(Paths.get(Long.toString(current.getId()), Long.toString(currentPhoto.getId())), p.getInputStream());
+                } catch (IOException | SempicException ex) {
+                    Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+                return "failure";
+                }
+            } catch (SempicModelException ex) {
+                Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
+                return "failure";
+            }
         }
-        
-        return "success";
+    return "succes";
     }
-    
-    
-    
+
 }

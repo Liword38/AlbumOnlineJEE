@@ -38,7 +38,7 @@ public class ListUsers {
     }
 
     public DataModel<SempicUser> getMembersOfDataModel(Integer groupId) {
-        System.out.println("On cherche des membres");
+        System.out.println("On cherche des membres dans " + this.getClass().toString());
         if (membersOfDataModel == null) {
             membersOfDataModel = new ListDataModel<>(userDao.findByMemberOfGrp(Long.valueOf(groupId)));
         }

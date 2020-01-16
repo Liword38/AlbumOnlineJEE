@@ -8,6 +8,7 @@ package fr.uga.miashs.sempic.dao;
 import fr.uga.miashs.sempic.entities.SempicAlbum;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -20,30 +21,29 @@ public class AlbumFacade extends AbstractJpaFacade<Long, SempicAlbum> {
     public AlbumFacade() {
         super(SempicAlbum.class);
     }
-    
+
     //Récupère tous les albums dont l'User propriétaire a userId comme id
-   public List<SempicAlbum> findAllByOwner(long userId) {
+    public List<SempicAlbum> findAllByOwner(long userId) {
         TypedQuery<SempicAlbum> q = getEntityManager().createQuery("SELECT DISTINCT a FROM SempicAlbum a, SempicUser u WHERE u.id=:userId AND a.albumOwner=u", SempicAlbum.class);
         q.setParameter("userId", userId);
         return q.getResultList();
     }
-    
-   //Récupère tous les albums partagés dans un groupe auquel appartient l'User d'id userId
+
+    //Récupère tous les albums partagés dans un groupe auquel appartient l'User d'id userId
     public List<SempicAlbum> findAllByUser(long userId) {
         TypedQuery<SempicAlbum> q;
-        q = getEntityManager().createQuery("SELECT DISTINCT a FROM SempicAlbum a LEFT JOIN a.sharedWithGrp g LEFT JOIN g.grpMembers u WHERE u.id=:userId" ,SempicAlbum.class);
+        q = getEntityManager().createQuery("SELECT DISTINCT a FROM SempicAlbum a LEFT JOIN a.sharedWithGrp g LEFT JOIN g.grpMembers u WHERE u.id=:userId", SempicAlbum.class);
         q.setParameter("userId", userId);
         return q.getResultList();
 
     }
 
-    //TODO
-    public void addPhoto() {
-
+    //Ajoute une photo d'id photoId à l'album d'id albumId (PAS TESTE)
+    public void addPhoto(long albumId, long photoId) {
+        Query q = getEntityManager().createNativeQuery("UPDATE SempicPhoto SET inAlbum =?1 WHERE id=?2");
+        q.setParameter(1, albumId);
+        q.setParameter(2, photoId);
+        q.executeUpdate();
     }
 
-    //TODO
-    public void deletePhoto() {
-
-    }
 }

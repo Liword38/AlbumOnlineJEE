@@ -27,12 +27,12 @@ public class SempicPhoto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     
     //TODO: Mettre une vraie photo
     @NotBlank(message="Une photo doit être donnée (pour le moment une string suffit)")
-    private String content;
+    private String name;
     
     @ManyToOne
     private SempicAlbum inAlbum;
@@ -48,12 +48,12 @@ public class SempicPhoto implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public SempicAlbum getInAlbum() {
@@ -66,19 +66,24 @@ public class SempicPhoto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 47 * hash + (int) (this.id ^ (this.id >>> 32));
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SempicPhoto)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        SempicPhoto other = (SempicPhoto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SempicPhoto other = (SempicPhoto) obj;
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -86,7 +91,11 @@ public class SempicPhoto implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.uga.miashs.sempic.entities.SempicPhoto[ id=" + id + " ]";
+        return "SempicPhoto{" + "id=" + id + ", name = " + name + '}';
     }
+
+
+
+    
     
 }
