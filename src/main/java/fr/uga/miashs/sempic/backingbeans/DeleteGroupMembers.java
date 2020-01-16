@@ -10,6 +10,7 @@ import fr.uga.miashs.sempic.dao.GroupFacade;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicGroup;
 import fr.uga.miashs.sempic.entities.SempicUser;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -66,10 +67,17 @@ public class DeleteGroupMembers {
     }
 
     
-    public void delete(long groupId, long memberId) {
+    public void delete(long memberId) {
         System.out.println("Suppression membre");
+        
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        System.out.println("Les params de la requête:" + params.toString());
+        String groupId = params.get("groupId");
+        System.out.println("On essaie de créer une photo dans l'album d'id"+ groupId);
+        
         System.out.println("ID membre = " + memberId);
-        groupDao.deleteMember(groupId, memberId);
+        
+        groupDao.deleteMember(Long.parseLong(groupId), memberId);
 
         
     }

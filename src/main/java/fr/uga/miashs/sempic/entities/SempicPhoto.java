@@ -29,7 +29,7 @@ public class SempicPhoto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    
     private File image;
     
     //TODO: Mettre une vraie photo

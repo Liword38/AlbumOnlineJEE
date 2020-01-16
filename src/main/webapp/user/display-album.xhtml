@@ -14,12 +14,13 @@
         <h2>Description : #{listAlbums.getSoloAlbum(param.albumId).description}</h2> 
         <br></br>
         <h2>Photos :</h2>
-        <h:dataTable id="photos" value="#{listPhotos.getDataModelByAlbum(param.albumId)}" var="photo" >
+        <!--
+        <h:dataTable id="photos" value="#//{listPhotos.getDataModelByAlbum(param.albumId)}" var="photo" >
             <h:column>
-                <img src="/AlbumPhotoOnline/#{photo.name}" alt="" height="100" width="100"/>
+                <img src="/AlbumPhotoOnline/#//{photo.name}" alt="" height="100" width="100"/>
             </h:column>
         </h:dataTable>
-
+-->
 
         <h:form enctype='multipart/form-data'>
             <h:inputFile h5:accept="image/*" value="#{createPhoto.photoPart}"/>

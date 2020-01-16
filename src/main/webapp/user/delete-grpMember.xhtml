@@ -20,7 +20,7 @@ and open the template in the editor.
     <body>
         <h:form>
 
-            <h:dataTable value="#{listUsers.getMembersOfDataModel(param['id'])}" var="member" rules="all">
+            <h:dataTable value="#{listUsers.getDataModel()}" var="member" rules="all">
 
                 <h:column>
                     <f:facet name="header">
@@ -55,8 +55,8 @@ and open the template in the editor.
                 </h:column>
                 
                 <h:column>
-                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(param['id'], member.id)}">
-
+                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(member.id)}">
+                        <f:param name="groupId" value="#{param['id']}"/>
                     </h:commandButton>
                 </h:column>                
                 
