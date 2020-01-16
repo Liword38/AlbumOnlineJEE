@@ -37,10 +37,10 @@ public class ListUsers {
         return dataModel;
     }
 
-    public DataModel<SempicUser> getMembersOfDataModel(Integer groupId) {
-        System.out.println("On cherche des membres dans " + this.getClass().toString());
+    public DataModel<SempicUser> getMembersOfDataModel(long groupId) {
+        System.out.println("On cherche des membres");
         if (membersOfDataModel == null) {
-            membersOfDataModel = new ListDataModel<>(userDao.findByMemberOfGrp(Long.valueOf(groupId)));
+            membersOfDataModel = new ListDataModel<>(userDao.findByMemberOfGrp(groupId));
         }
         return membersOfDataModel;
     }

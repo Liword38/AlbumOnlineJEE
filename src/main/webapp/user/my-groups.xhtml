@@ -12,6 +12,14 @@
         <h:form>
             <h:dataTable value="#{listMyGroups.dataModel}" var="group"
                          rules="all">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID" />
+                    </f:facet>
+
+                    <h:outputText value="#{group.id}"/>
+                </h:column>
                 
                 <h:column>
                     <f:facet name="header">
@@ -31,20 +39,20 @@
                 </h:column>
                 
                 <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Actions" />
+                    </f:facet>
                     <h:commandButton value="Ajouter membre(s)" action="Adding member">
-                        <f:param/>
+                     
                     </h:commandButton>                  
-                </h:column>
                 
-                <h:column>
                     
                     <h:commandButton value="Supprimer membre(s)" action="Deleting member">
                         <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMembers.target.id}"/>
+                        
                     </h:commandButton>
                     
-                </h:column>
                 
-                <h:column>
                     <h:commandButton value="Supprimer groupe" action="#{deleteGroup.delete(group.id)}"/>                  
                 </h:column>
                 

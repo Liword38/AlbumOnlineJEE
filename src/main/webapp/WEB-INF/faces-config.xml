@@ -250,6 +250,23 @@
                 </redirect>  
         </navigation-case>  
     </navigation-rule>
+    
+    <navigation-rule>
+    <description>Group deleting member action result</description>
+    <from-view-id>user/delete-grpMember.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{deleteGroupMembers.delete(member.id)}</from-action>
+        <from-outcome>success</from-outcome>
+        <to-view-id>user/my-groups.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{deleteGroupMembers.delete(member.id)}</from-action>
+        <from-outcome>failure</from-outcome>
+        <to-view-id>user/my-groups.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+    </navigation-rule>
     <!--
     <navigation-rule>  
         <from-view-id>user/my-groups.xhtml</from-view-id>   

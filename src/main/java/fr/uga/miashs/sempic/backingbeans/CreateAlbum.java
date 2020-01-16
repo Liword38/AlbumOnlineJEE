@@ -38,7 +38,7 @@ import javax.servlet.http.Part;
 public class CreateAlbum implements Serializable {
 
     private SempicAlbum current;
-    private ArrayList<Part> photoFiles;
+    private List<Part> photoFiles;
 
     @Inject
     private PhotoFacade photoDao;
@@ -108,7 +108,7 @@ public class CreateAlbum implements Serializable {
         return photoFiles;
     }
 
-    public void setPhotoFiles(ArrayList<Part> photoFiles) {
+    public void setPhotoFiles(List<Part> photoFiles) {
         this.photoFiles = photoFiles;
     }
 

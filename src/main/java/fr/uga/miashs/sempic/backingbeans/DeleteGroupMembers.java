@@ -26,7 +26,7 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class DeleteGroupMembers {
-
+    
     private SempicGroup target;
 
     @Inject
@@ -51,21 +51,23 @@ public class DeleteGroupMembers {
     public void setTarget(SempicGroup target) {
         this.target = target;
     }
-
+    
+    
     public void setOwnerId(String id) {
         System.out.println(id);
         target.setOwner(memberDao.read(Long.valueOf(id)));
     }
 
     public String getOwnerId() {
-
-        if (target.getOwner() == null) {
+        if(target.getOwner() == null) {
             return "-1";
         }
         return "" + target.getOwner().getId();
     }
 
+    
     public String delete(long memberId) {
+        System.out.println("ID membre = " + memberId);
         try {
             memberDao.deleteById(memberId);
         } catch (SempicModelException ex) {
