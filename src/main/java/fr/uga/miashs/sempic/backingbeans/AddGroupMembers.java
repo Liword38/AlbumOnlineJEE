@@ -5,17 +5,11 @@
  */
 package fr.uga.miashs.sempic.backingbeans;
 
-import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.dao.GroupFacade;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicGroup;
-import fr.uga.miashs.sempic.entities.SempicUser;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.ManagedProperty;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,7 +19,7 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class DeleteGroupMembers {
+public class AddGroupMembers {
     
     private SempicGroup target;
 
@@ -34,8 +28,9 @@ public class DeleteGroupMembers {
 
     @Inject
     private SempicUserFacade memberDao;
+    
 
-    public DeleteGroupMembers() {
+    public AddGroupMembers() {
 
     }
 
@@ -66,12 +61,11 @@ public class DeleteGroupMembers {
     }
 
     
-    public void delete(long groupId, long memberId) {
+    public void add(long groupId, long memberId) {
         System.out.println("Suppression membre");
         System.out.println("ID membre = " + memberId);
-        groupDao.deleteMember(groupId, memberId);
+        groupDao.addMember(groupId, memberId);
 
         
     }
-
 }

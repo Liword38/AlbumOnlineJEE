@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
         <f:viewParam name="id" value="#{deleteGroupMembers.target.id}" />
-        <f:viewParam name="ownerId" value="#{deleteGroupMembers.ownerId}" />  
+        <f:viewParam name="ownerId" value="#{deleteGroupMembers.ownerId}" />
     </f:metadata>
     <h:head>
         <title>Supprimer un Membre du groupe</title>
@@ -55,9 +55,8 @@ and open the template in the editor.
                 </h:column>
                 
                 <h:column>
-                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(member.id)}">
-                        
-                        <f:param name="ownerId" value="#{sessionTools.connectedUser.id}"/>
+                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(param['id'], member.id)}">
+
                     </h:commandButton>
                 </h:column>                
                 

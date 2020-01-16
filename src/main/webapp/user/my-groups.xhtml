@@ -43,13 +43,13 @@
                         <h:outputText value="Actions" />
                     </f:facet>
                     <h:commandButton value="Ajouter membre(s)" action="Adding member">
-                     
+                        <f:setPropertyActionListener value="#{group.id}" target="#{addGroupMembers.target.id}"/>
                     </h:commandButton>                  
                 
                     
                     <h:commandButton value="Supprimer membre(s)" action="Deleting member">
                         <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMembers.target.id}"/>
-                        
+                       
                     </h:commandButton>
                     
                 
