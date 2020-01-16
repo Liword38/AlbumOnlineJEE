@@ -39,16 +39,4 @@ public class ListMyAlbums {
         return dataModel;
     }
     
-    
-    /*
-    public void saveAction() {
-        
-        for (SempicAlbum album : dataModel) {
-            album.setEditable(false);
-        }
-    }
-    
-    public void editAction(SempicAlbum album) {
-        album.setEditable(true);
-    }*/
 }

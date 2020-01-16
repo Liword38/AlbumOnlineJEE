@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Display album</title>
     </h:head>
@@ -10,7 +13,21 @@
         <br></br>
         <h2>Description : #{listAlbums.getSoloAlbum(param.albumId).description}</h2> 
         <br></br>
-        <h2>Photos : (Pas implémenté)</h2>
+        <h2>Photos :</h2>
+        <h:dataTable id="photos" value="#{listPhotos.getDataModelByAlbum(param.albumId)}" var="photo" >
+            <h:column>
+                <img src="/AlbumPhotoOnline/#{photo.name}" alt="" height="100" width="100"/>
+            </h:column>
+        </h:dataTable>
+
+
+        <h:form enctype='multipart/form-data'>
+            <h:inputFile h5:accept="image/*" value="#{createPhoto.photoPart}"/>
+            <br></br>
+            <h:commandButton value="Valider photo" type="submit" action="#{createPhoto.create()}">
+                <f:param name="albumId" value="#{param.albumId}" />
+            </h:commandButton>
+        </h:form>
     </h:body>
 
 </html>

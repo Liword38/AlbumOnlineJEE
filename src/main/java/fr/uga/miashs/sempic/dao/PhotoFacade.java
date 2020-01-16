@@ -23,7 +23,7 @@ public class PhotoFacade extends AbstractJpaFacade<Long,SempicPhoto> {
     
     //Renvoie les photos de l'album d'id albumId (PAS TESTE)
     public List<SempicPhoto> findByAlbum(long albumId) {
-        TypedQuery<SempicPhoto> q = getEntityManager().createQuery("SELECT DISTINCT p FROM SempicPhoto p WHERE p.inAlbum=:albumId",SempicPhoto.class);
+        TypedQuery<SempicPhoto> q = getEntityManager().createQuery("SELECT DISTINCT p FROM SempicPhoto p, SempicAlbum a WHERE p.inAlbum=a AND a.id=:albumId",SempicPhoto.class);
         q.setParameter("albumId", albumId);
         return q.getResultList();
     }

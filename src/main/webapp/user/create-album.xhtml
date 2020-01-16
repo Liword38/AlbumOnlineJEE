@@ -33,7 +33,6 @@ and open the template in the editor.
                 <f:selectItems value="#{listMyGroups.dataModel}"  var="g" itemLabel="#{g.name}"/>
             </h:selectManyCheckbox>
 
-<!--            <h:inputFile h5:multiple="true" h5:accept="image/*" value="#{createAlbum.photoFiles}"/><br></br>-->
 
             <h:commandButton value="Créer" action="#{createAlbum.create()}">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>

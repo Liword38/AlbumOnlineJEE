@@ -45,6 +45,8 @@ public class SempicUserFacade extends AbstractJpaFacade<Long, SempicUser> {
                 .setHint("javax.persistence.fetchgraph", entityGraph)
                 .getResultList();
     }
+    
+    
 
     //Retrouve les Users membres du groupe d'id groupId (PAS TESTE)
     public List<SempicUser> findByMemberOfGrp(long groupId) {

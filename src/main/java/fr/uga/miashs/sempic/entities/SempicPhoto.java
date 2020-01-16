@@ -6,6 +6,7 @@
 
 package fr.uga.miashs.sempic.entities;
 
+import java.io.File;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,9 +30,10 @@ public class SempicPhoto implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private File image;
     
     //TODO: Mettre une vraie photo
-    @NotBlank(message="Une photo doit être donnée (pour le moment une string suffit)")
+    @NotBlank(message="La photo doit avoir un nom")
     private String name;
     
     @ManyToOne
@@ -54,6 +56,14 @@ public class SempicPhoto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
     }
 
     public SempicAlbum getInAlbum() {

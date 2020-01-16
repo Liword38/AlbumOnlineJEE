@@ -39,7 +39,6 @@ import javax.servlet.http.Part;
 public class CreateAlbum implements Serializable {
 
     private SempicAlbum current;
-    private List<Part> photoFiles;
 
     @Inject
     private PhotoFacade photoDao;
@@ -62,27 +61,6 @@ public class CreateAlbum implements Serializable {
         current = new SempicAlbum();
     }
 
-    //Ajoute à l'album séléctionné les photos ajoutées par l'user
-//    public String addPhotos() {
-//    for(Part p : photoFiles){
-//            try {
-//                SempicPhoto currentPhoto = new SempicPhoto();
-//                String name = p.getSubmittedFileName();
-//                currentPhoto.setName(name);
-//                photoDao.create(currentPhoto);
-//                try {
-//                    photoStorage.savePicture(Paths.get(Long.toString(current.getId()), Long.toString(currentPhoto.getId())), p.getInputStream());
-//                } catch (IOException | SempicException ex) {
-//                    Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
-//                return "failure";
-//                }
-//            } catch (SempicModelException ex) {
-//                Logger.getLogger(CreateAlbum.class.getName()).log(Level.SEVERE, null, ex);
-//                return "failure";
-//            }
-//        }
-//    return "succes";
-//    }
     public void setOwnerId(String id) {
         System.out.println(id);
         current.setAlbumOwner(userDao.read(Long.valueOf(id)));
@@ -101,14 +79,6 @@ public class CreateAlbum implements Serializable {
 
     public void setCurrent(SempicAlbum current) {
         this.current = current;
-    }
-
-    public List<Part> getPhotoFiles() {
-        return photoFiles;
-    }
-
-    public void setPhotoFiles(List<Part> photoFiles) {
-        this.photoFiles = photoFiles;
     }
 
     public String create() {

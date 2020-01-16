@@ -14,43 +14,43 @@
         <h:form>
             <h:commandButton value="Se déconnecter" action="#{sessionTools.logout()}"/>
         </h:form>
-        
+
         <h:button outcome="my-groups" value="Consulter mes groupes"/>
         <h:button outcome="my-albums" value="Consulter mes albums"/>
-        
-        
+
+
         <h1 style="text-align: center">Bienvenue sur l'application de partage de photos !</h1>
-    
+
         <div style="margin-left: 43%; margin-top: 5%">
             <div>Connecté en tant que: #{sessionTools.connectedUser.firstname}  #{sessionTools.connectedUser.lastname}</div>
             <h:button outcome="list-users" value="Listes des utilisateurs"/>
             <span><h2>Mes Albums</h2></span><span></span>
-        <h:button outcome="create-album" value="Créer un album"/>
-        <h:dataTable id="albums" value="#{listAlbums.dataModel}" var="album">
-            <h:column>
-                <h:outputText value="➤ #{album.name}"/>
-            </h:column>
-        </h:dataTable> 
+            <h:button outcome="create-album" value="Créer un album"/>
+            <h:dataTable id="albums" value="#{listAlbums.dataModel}" var="album">
+                <h:column>
+                    <h:outputText value="➤ #{album.name}"/>
+                </h:column>
+            </h:dataTable> 
 
             <!--<h:button outcome="create-user" value="Create a user"/>-->
 
-        <h2>Mes groupes</h2>
-        <h:button outcome="create-group" value="Créer un groupe"/>
-        
-        <h:dataTable id="groups" value="#{listGroups.dataModel}" var="group">
-            <h:column>
-                <h:outputText value="➤ #{group.name}"/>
-            </h:column>
-        </h:dataTable>    
-        
-        <h2>Les photos</h2>
+            <h2>Mes groupes</h2>
+            <h:button outcome="create-group" value="Créer un groupe"/>
 
-        <h:dataTable id="photos" value="#{listPhotos.dataModel}" var="photo">
-            <h:column>
-                <h:outputText value="- #{photo.content}"/>
-            </h:column>
-        </h:dataTable>
-        
+            <h:dataTable id="groups" value="#{listGroups.dataModel}" var="group">
+                <h:column>
+                    <h:outputText value="➤ #{group.name}"/>
+                </h:column>
+            </h:dataTable>    
+
+            <h2>Les photos</h2>
+
+            <h:dataTable id="photos" value="#{listPhotos.dataModel}" var="photo" >
+                <h:column>
+                    <img src="/AlbumPhotoOnline/#{photo.name}" alt="" height="100" width="100"/>
+                </h:column>
+            </h:dataTable>
+
         </div>
     </h:body>
 </html>

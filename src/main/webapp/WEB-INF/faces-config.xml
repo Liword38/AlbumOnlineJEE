@@ -52,6 +52,17 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- album-display page -->
+    <navigation-rule>
+        <description>Display album page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>display-album</from-outcome>
+            <to-view-id>/user/display-album.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
     <!-- list-user page -->
     <navigation-rule>
         <description>List users page</description>
@@ -205,6 +216,7 @@
     </navigation-rule>
     
     <!-- MODIFICATIONS -->
+    
 
     <navigation-rule>
         <description>Album editing action result</description>
