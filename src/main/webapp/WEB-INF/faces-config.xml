@@ -159,6 +159,35 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- Photo -->
+    <navigation-rule>
+        <description>Upload photo action result</description>
+        <from-view-id>/user/display-album.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{createPhoto.create()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect include-view-params="true">  
+                <view-param>  
+                    <name>albumId</name>  
+                    <value>#{createPhoto.current.inAlbum.id}</value>  
+                </view-param>  
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{createPhoto.create()}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect include-view-params="true">  
+                <view-param>  
+                    <name>albumId</name>  
+                    <value>#{createPhoto.current.inAlbum.id}</value>  
+                </view-param>  
+            </redirect>        
+        </navigation-case>
+    </navigation-rule>
+
+    
     <!-- SUPPRESSIONS -->
     
     <!-- User-->
@@ -199,20 +228,20 @@
     
     <!-- Group -->
     <navigation-rule>
-    <description>Group deleting action result</description>
-    <from-view-id>user/my-groups.xhtml</from-view-id>
-    <navigation-case>
-        <from-action>#{deleteGroup.delete(group.id)}</from-action>
-        <from-outcome>success</from-outcome>
-        <to-view-id>#{view.viewId}</to-view-id>
-        <redirect/>
-    </navigation-case>
-    <navigation-case>
-        <from-action>#{deleteGroup.delete(group.id)}</from-action>
-        <from-outcome>failure</from-outcome>
-        <to-view-id>#{view.viewId}</to-view-id>
-        <redirect/>
-    </navigation-case>
+        <description>Group deleting action result</description>
+        <from-view-id>user/my-groups.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{deleteGroup.delete(group.id)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{deleteGroup.delete(group.id)}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     
     <!-- MODIFICATIONS -->
@@ -240,13 +269,13 @@
         <from-view-id>user/my-albums.xhtml</from-view-id>   
         <navigation-case>  
             <from-action>Editing album</from-action>
-                <to-view-id>user/edit-album.xhtml</to-view-id>  
-                <redirect include-view-params="true">  
-                    <view-param>  
+            <to-view-id>user/edit-album.xhtml</to-view-id>  
+            <redirect include-view-params="true">  
+                <view-param>  
                     <name>id</name>  
                     <value>#{editAlbum.target.id}</value>  
-                    </view-param>  
-                </redirect>  
+                </view-param>  
+            </redirect>  
         </navigation-case>  
     </navigation-rule> 
     
@@ -255,13 +284,13 @@
         <from-view-id>/user/my-groups.xhtml</from-view-id>   
         <navigation-case>  
             <from-action>Deleting member</from-action>
-                <to-view-id>/user/delete-grpMember.xhtml</to-view-id>  
-                <redirect include-view-params="true">  
-                    <view-param>  
+            <to-view-id>/user/delete-grpMember.xhtml</to-view-id>  
+            <redirect include-view-params="true">  
+                <view-param>  
                     <name>id</name>  
                     <value>#{deleteGroupMembers.target.id}</value>  
-                    </view-param>  
-                </redirect>  
+                </view-param>  
+            </redirect>  
         </navigation-case>  
     </navigation-rule>
     
@@ -280,13 +309,13 @@
         <from-view-id>/user/my-groups.xhtml</from-view-id>   
         <navigation-case>  
             <from-action>Adding member</from-action>
-                <to-view-id>/user/add-grpMember.xhtml</to-view-id>  
-                <redirect include-view-params="true">  
-                    <view-param>  
+            <to-view-id>/user/add-grpMember.xhtml</to-view-id>  
+            <redirect include-view-params="true">  
+                <view-param>  
                     <name>id</name>  
                     <value>#{addGroupMembers.target.id}</value>  
-                    </view-param>  
-                </redirect>  
+                </view-param>  
+            </redirect>  
         </navigation-case>  
     </navigation-rule>
     

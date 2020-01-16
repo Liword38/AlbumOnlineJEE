@@ -111,6 +111,7 @@ public class CreatePhoto implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            return "failure";
         }
         String name = photoPart.getSubmittedFileName();
         current.setName(name);
@@ -120,10 +121,11 @@ public class CreatePhoto implements Serializable {
             photoDao.create(current);
         } catch (SempicModelException ex) {
             ex.printStackTrace(System.out);
+            return "failure";
 
         }
 
-        return "display-album?faces-redirect=true&idAlbum=" + albumId;
+        return "success";
 
     }
 

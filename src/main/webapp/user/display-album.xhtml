@@ -24,7 +24,7 @@
         <h:form enctype='multipart/form-data'>
             <h:inputFile h5:accept="image/*" value="#{createPhoto.photoPart}"/>
             <br></br>
-            <h:commandButton value="Valider photo" type="submit" action="#{createPhoto.create()}">
+            <h:commandButton value="Valider photo" type="action" action="#{createPhoto.create()}">
                 <f:param name="albumId" value="#{param.albumId}" />
             </h:commandButton>
         </h:form>

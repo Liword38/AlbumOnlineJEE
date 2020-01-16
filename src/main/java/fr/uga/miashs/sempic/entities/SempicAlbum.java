@@ -46,8 +46,8 @@ public class SempicAlbum implements Serializable {
     @NotBlank(message = "Il faut un nom à cet album")
     private String name;
 
-    //TODO: Mettre des vrais photos  &  mapping
-    @OneToMany(mappedBy = "inAlbum", cascade = CascadeType.REMOVE )
+   
+    @OneToMany(mappedBy = "inAlbum", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY )
     private Set<SempicPhoto> photos;
     
 
