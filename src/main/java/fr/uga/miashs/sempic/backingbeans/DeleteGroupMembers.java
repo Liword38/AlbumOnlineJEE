@@ -26,7 +26,6 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class DeleteGroupMembers {
-
     
     private SempicGroup target;
     
@@ -54,6 +53,7 @@ public class DeleteGroupMembers {
         this.target = target;
     }
     
+    
     public void setOwnerId(String id) {
         System.out.println(id);
         target.setOwner(memberDao.read(Long.valueOf(id)));
@@ -68,6 +68,7 @@ public class DeleteGroupMembers {
 
     
     public String delete(long memberId) {
+        System.out.println("ID membre = " + memberId);
         try {
             memberDao.deleteById(memberId);
         }
