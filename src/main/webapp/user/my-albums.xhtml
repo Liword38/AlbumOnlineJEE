@@ -29,8 +29,10 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h:outputText value="Nom" />
                     </f:facet>
+                    <h:link value="#{album.name}"  outcome="display-album">
+                        <f:param name="albumId" value="#{album.id}"/>
+                    </h:link>
 
-                    <h:outputText value="#{album.name}"/>
                 </h:column>
 
                 <h:column>
@@ -54,7 +56,7 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h:outputText value="Actions"/>
                     </f:facet>
-                    
+
                     <h:commandButton action="Editing album" value="Modifier">
                         <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target.id}"/>
 
@@ -71,13 +73,21 @@ and open the template in the editor.
 
         <h:dataTable value="#{listSharedAlbums.dataModel}" var="album"
                      rules="all">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Id" />
+                </f:facet>
+
+                <h:outputText value="#{album.id}"/>
+            </h:column>
 
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Nom" />
                 </f:facet>
-
-                <h:outputText value="#{album.name}"/>
+                <h:link value="#{album.name}"  outcome="display-album">
+                    <f:param name="albumId" value="#{album.id}"/>
+                </h:link>
             </h:column>
 
             <h:column>
