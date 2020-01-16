@@ -55,8 +55,8 @@ and open the template in the editor.
                 </h:column>
                 
                 <h:column>
-                    <h:commandButton value="Ajouter" action="#{addGroupMembers.add(param['id'], user.id)}">
-
+                    <h:commandButton value="Ajouter" action="#{addGroupMembers.add(user.id)}">
+                        <f:param name="groupId" value="#{param['id']}"/>
                     </h:commandButton>
                 </h:column>                
                 

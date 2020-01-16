@@ -30,7 +30,7 @@ public class SempicPhoto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    
     private File image;
     
     @NotBlank(message="La photo doit avoir un nom")
