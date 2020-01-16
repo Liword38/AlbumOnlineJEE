@@ -206,6 +206,7 @@
     
     <!-- MODIFICATIONS -->
 
+    <!-- Édition name/definition album -->
     <navigation-rule>
         <description>Album editing action result</description>
         <from-view-id>user/edit-album.xhtml</from-view-id>
@@ -237,11 +238,12 @@
         </navigation-case>  
     </navigation-rule> 
     
+    <!-- Suppression membre d'un groupe -->
     <navigation-rule>  
-        <from-view-id>user/my-groups.xhtml</from-view-id>   
+        <from-view-id>/user/my-groups.xhtml</from-view-id>   
         <navigation-case>  
             <from-action>Deleting member</from-action>
-                <to-view-id>user/delete-grpMember.xhtml</to-view-id>  
+                <to-view-id>/user/delete-grpMember.xhtml</to-view-id>  
                 <redirect include-view-params="true">  
                     <view-param>  
                     <name>id</name>  
@@ -252,13 +254,38 @@
     </navigation-rule>
     
     <navigation-rule>
-    <description>Group deleting member action result</description>
-    <from-view-id>user/delete-grpMember.xhtml</from-view-id>
-    <navigation-case>
-        <from-action>#{deleteGroupMembers.delete(param['id'], member.id)}</from-action>
-        <to-view-id>#{view.viewId}</to-view-id>
-        <redirect/>
-    </navigation-case>
+        <description>Group deleting member action result</description>
+        <from-view-id>user/delete-grpMember.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{deleteGroupMembers.delete(param['id'], member.id)}</from-action>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Ajout membre à un groupe -->
+    <navigation-rule>  
+        <from-view-id>/user/my-groups.xhtml</from-view-id>   
+        <navigation-case>  
+            <from-action>Adding member</from-action>
+                <to-view-id>/user/add-grpMember.xhtml</to-view-id>  
+                <redirect include-view-params="true">  
+                    <view-param>  
+                    <name>id</name>  
+                    <value>#{addGroupMembers.target.id}</value>  
+                    </view-param>  
+                </redirect>  
+        </navigation-case>  
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>Group adding member action result</description>
+        <from-view-id>/user/add-grpMember.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{addGroupMembers.add(param['id'], user.id)}</from-action>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     <!--
     <navigation-rule>  

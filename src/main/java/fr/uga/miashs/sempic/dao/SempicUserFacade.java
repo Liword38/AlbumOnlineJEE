@@ -60,6 +60,7 @@ public class SempicUserFacade extends AbstractJpaFacade<Long, SempicUser> {
         System.out.println(q.getResultList());
         return q.getResultList();
     }
+    
 
     public SempicUser login(String email, String password) throws SempicModelException {
         Query q = getEntityManager().createNamedQuery("query.SempicUser.readByEmail");

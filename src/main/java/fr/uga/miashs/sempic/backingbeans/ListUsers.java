@@ -6,6 +6,7 @@
 package fr.uga.miashs.sempic.backingbeans;
 
 import fr.uga.miashs.sempic.SempicModelException;
+import fr.uga.miashs.sempic.dao.GroupFacade;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicUser;
 import java.util.logging.Level;
@@ -29,6 +30,9 @@ public class ListUsers {
 
     @Inject
     private SempicUserFacade userDao;
+    
+    @Inject
+    private GroupFacade groupDao;
 
     public DataModel<SempicUser> getDataModel() {
         if (dataModel == null) {
@@ -44,6 +48,15 @@ public class ListUsers {
         }
         return membersOfDataModel;
     }
+    /*
+    public DataModel<SempicUser> getNotInGroup(long groupId) {
+        
+        if (notMembersDataModel == null) {
+            notMembersDataModel = new ListDataModel<>(userDao.findNotInGroup(groupId));
+        }
+        return notMembersDataModel;
+        
+    }*/
     
 
 }
