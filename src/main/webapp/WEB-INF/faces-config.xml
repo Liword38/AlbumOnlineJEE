@@ -255,15 +255,8 @@
     <description>Group deleting member action result</description>
     <from-view-id>user/delete-grpMember.xhtml</from-view-id>
     <navigation-case>
-        <from-action>#{deleteGroupMembers.delete(member.id)}</from-action>
-        <from-outcome>success</from-outcome>
-        <to-view-id>user/my-groups.xhtml</to-view-id>
-        <redirect/>
-    </navigation-case>
-    <navigation-case>
-        <from-action>#{deleteGroupMembers.delete(member.id)}</from-action>
-        <from-outcome>failure</from-outcome>
-        <to-view-id>user/my-groups.xhtml</to-view-id>
+        <from-action>#{deleteGroupMembers.delete(param['id'], member.id)}</from-action>
+        <to-view-id>#{view.viewId}</to-view-id>
         <redirect/>
     </navigation-case>
     </navigation-rule>

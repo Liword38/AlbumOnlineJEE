@@ -66,16 +66,12 @@ public class DeleteGroupMembers {
     }
 
     
-    public String delete(long memberId) {
+    public void delete(long groupId, long memberId) {
+        System.out.println("Suppression membre");
         System.out.println("ID membre = " + memberId);
-        try {
-            memberDao.deleteById(memberId);
-        } catch (SempicModelException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
-            return "failure";
-        }
+        groupDao.deleteMember(groupId, memberId);
 
-        return "success";
+        
     }
 
 }
