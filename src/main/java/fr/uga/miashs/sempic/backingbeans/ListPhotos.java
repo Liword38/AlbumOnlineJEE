@@ -26,6 +26,7 @@ public class ListPhotos {
 
     private DataModel<SempicPhoto> dataModel;
     private DataModel<SempicPhoto> dataModelByAlbum;
+    private DataModel<SempicPhoto> dataModelBySharedWithUser;
 
     @Inject
     private PhotoFacade photoDao;
@@ -42,14 +43,16 @@ public class ListPhotos {
 
     public DataModel<SempicPhoto> getDataModelByAlbum(String albumId) {
         if (dataModelByAlbum == null) {
-//            Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//            System.out.println("Les params de la requête:" + params.toString());
-//            String albumId = params.get("albumId");
-
-            System.out.println("On essaie de lister les photos de l'album d'id" + albumId);
             dataModelByAlbum = new ListDataModel<>(photoDao.findByAlbum(Long.valueOf(albumId)));
         }
         return dataModelByAlbum;
+    }
+    
+    public DataModel<SempicPhoto> getDataModelBySharedWithUser(String userId) {
+        if (dataModelBySharedWithUser == null) {
+            dataModelBySharedWithUser = new ListDataModel<>(photoDao.findBySharedWithUser(Long.valueOf(userId)));
+        }
+        return dataModelBySharedWithUser;
     }
 
 }

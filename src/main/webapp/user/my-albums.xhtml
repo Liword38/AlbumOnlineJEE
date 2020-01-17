@@ -13,6 +13,8 @@ and open the template in the editor.
         <title>Liste des albums</title>
     </h:head>
     <h:body>
+        <h:button value="Accueil" outcome="go-home"/>
+
         <h2>Mes Albums</h2>
         <h:form>
             <h:dataTable value="#{listMyAlbums.dataModel}" var="album"

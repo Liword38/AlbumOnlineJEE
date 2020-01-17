@@ -8,7 +8,7 @@
         <title>Liste des utilisateurs</title>
     </h:head>
     <h:body>
-
+        <h:button value="Accueil" outcome="go-home"/>
         <h:form>
             <h:dataTable value="#{listUsers.dataModel}" var="user"
                          rules="all">
@@ -20,7 +20,7 @@
 
                     <h:outputText value="#{user.id}"/>
                 </h:column>
-                
+
                 <h:column >
                     <f:facet name="header">
                         <h:outputText value="Lastname" />
@@ -78,10 +78,10 @@
                     </ui:repeat>
                 </h:column>
 
-                
+
                 <h:column>
                     <h:commandButton value="Supprimer utilisateur" action="#{deleteUser.delete(user.id)}"/>
-                    
+
                 </h:column>
             </h:dataTable>
         </h:form>

@@ -18,8 +18,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
+        <h:button value="Accueil" outcome="go-home"/>
         <h:form>
-
             <h:dataTable value="#{listUsers.getDataModel()}" var="user" rules="all">
 
                 <h:column>
@@ -29,7 +29,7 @@ and open the template in the editor.
 
                     <h:outputText value="#{user.id}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nom" />
@@ -37,7 +37,7 @@ and open the template in the editor.
 
                     <h:outputText value="#{user.lastname}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Prénom" />
@@ -45,7 +45,7 @@ and open the template in the editor.
 
                     <h:outputText value="#{user.firstname}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="E-mail" />
@@ -53,13 +53,13 @@ and open the template in the editor.
 
                     <h:outputText value="#{user.email}"/>
                 </h:column>
-                
+
                 <h:column>
                     <h:commandButton value="Ajouter" action="#{addGroupMembers.add(user.id)}">
                         <f:param name="groupId" value="#{param['id']}"/>
                     </h:commandButton>
                 </h:column>                
-                
+
             </h:dataTable>
 
         </h:form>

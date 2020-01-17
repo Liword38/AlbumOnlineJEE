@@ -8,6 +8,7 @@
         <title>Liste des groupes</title>
     </h:head>
     <h:body>
+        <h:button value="Accueil" outcome="go-home"/>
         <h2>Mes Groupes</h2>     
         <h:form>
             <h:dataTable value="#{listMyGroups.dataModel}" var="group"
@@ -19,9 +20,9 @@
                     </f:facet>
 
                     <h:outputText value="#{group.id}"/>
-               
+
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Name" />
@@ -29,7 +30,7 @@
 
                     <h:outputText value="#{group.name}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Partagé avec" />
@@ -38,7 +39,7 @@
                         <h:outputText value="#{m.firstname} | "/>
                     </ui:repeat>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Actions" />
@@ -46,30 +47,30 @@
                     <h:commandButton value="Ajouter membre(s)" action="Adding member">
                         <f:setPropertyActionListener value="#{group.id}" target="#{addGroupMembers.target.id}"/>
                     </h:commandButton>                  
-                
-                    
+
+
                     <h:commandButton value="Supprimer membre(s)" action="Deleting member">
                         <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMembers.target.id}"/>
-                       
+
                     </h:commandButton>
-                    
-                
+
+
                     <h:commandButton value="Supprimer groupe" action="#{deleteGroup.delete(group.id)}"/>                  
                 </h:column>
-                
-                
-                
-                
-                
+
+
+
+
+
             </h:dataTable>
         </h:form>
-               
+
         <h2>Les Groupes partagés avec moi</h2>     
-        
+
         <h:form>
             <h:dataTable value="#{listSharedGroups.dataModel}" var="group"
                          rules="all">
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Name" />
@@ -77,16 +78,16 @@
 
                     <h:outputText value="#{group.name}"/>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Propriétaire" />
-                   </f:facet>
+                    </f:facet>
                     <ui:repeat value="#{group.grpOwner}" var="m">
                         <h:outputText value="#{m.firstname}"/>
                     </ui:repeat>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Partagé avec" />
@@ -96,11 +97,11 @@
                     </ui:repeat>
                 </h:column>
 
-                
-                
+
+
             </h:dataTable>
         </h:form>
-        
+
     </h:body>
 </html>
 
