@@ -8,7 +8,7 @@
         <title>Liste des utilisateurs</title>
     </h:head>
     <h:body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h:form>
             <h:dataTable value="#{listUsers.dataModel}" var="user"
                          rules="all">
@@ -74,7 +74,7 @@
 
 
                 <h:column>
-                    <h:commandButton value="Supprimer utilisateur" action="#{deleteUser.delete(user.id)}"/>
+                    <h:commandButton value="Supprimer utilisateur" action="#{deleteUser.delete(user.id)}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
 
                 </h:column>
             </h:dataTable>

@@ -25,7 +25,7 @@ and open the template in the editor.
             </h:selectManyCheckbox>
 
 
-            <h:commandButton value="Retirer" action="#{unshareAlbum.unshare()}">
+            <h:commandButton value="Retirer" action="#{unshareAlbum.unshare()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
                 <f:param name="albumId" value="#{param['id']}"/>
                 <f:param name="groups" value="#{unshareAlbum.unshareGrp}"/>

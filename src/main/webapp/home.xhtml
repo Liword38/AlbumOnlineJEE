@@ -9,27 +9,28 @@
     </f:metadata>
     <h:head>
         <title>Albums Online</title>
+        
     </h:head>
     <h:body>
         <h:form>
-            <h:commandButton value="Se déconnecter" action="#{sessionTools.logout()}"/>
+            <h:commandButton value="Se déconnecter" action="#{sessionTools.logout()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         </h:form>
         <h1 style="text-align: center">Bienvenue sur l'application de partage de photos !</h1>
 
-        <div style="margin-left: 43%; margin-top: 5%">
-            <div>Connecté en tant que: #{sessionTools.connectedUser.firstname}  #{sessionTools.connectedUser.lastname}</div>
-            <h:button outcome="list-users" value="Listes des utilisateurs"/>
+        <div style="text-align: center; margin-top: 5%">
+            <div>Connecté en tant que : #{sessionTools.connectedUser.firstname}  #{sessionTools.connectedUser.lastname}</div>
+            <h:button outcome="list-users" value="Listes des utilisateurs" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
             
-            <span><h2>Mes Albums</h2></span><span></span>
-            <h:button outcome="my-albums" value="Consulter mes albums"/>
-            <h:button outcome="create-album" value="Créer un album"/>
+            <h2 style="margin-top: 2%">Mes Albums</h2>
+            <h:button outcome="my-albums" value="Consulter mes albums" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
+            <h:button outcome="create-album" value="Créer un album" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
 
-            <h2>Mes groupes</h2>
-            <h:button outcome="my-groups" value="Consulter mes groupes"/>
-            <h:button outcome="create-group" value="Créer un groupe"/>
+            <h2 style="margin-top: 2%">Mes groupes</h2>
+            <h:button outcome="my-groups" value="Consulter mes groupes" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
+            <h:button outcome="create-group" value="Créer un groupe" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
 
-            <h2>Les photos partagées avec moi</h2>
-            <h:dataTable id="photos" value="#{listPhotos.getDataModelBySharedWithUser(sessionTools.connectedUser.id)}" var="photo" >
+            <h2 style="margin-top: 2%">Les photos partagées avec moi</h2>
+            <h:dataTable style="margin: auto" id="photos" value="#{listPhotos.getDataModelBySharedWithUser(sessionTools.connectedUser.id)}" var="photo" >
                 <h:column>
                     <img src="/AlbumPhotoOnline/#{photo.name}" alt="" height="100" width="100"/>
                 </h:column>

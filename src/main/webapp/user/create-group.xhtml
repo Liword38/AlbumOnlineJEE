@@ -13,7 +13,7 @@
     </h:head>
 
     <h:body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h:form>
             <h:panelGrid columns = "3">
                 <label for="lastname">Nom:</label>
@@ -24,7 +24,7 @@
             <h:selectManyCheckbox id="members" layout="pageDirection" value="#{createGroup.current.members}">
                 <f:selectItems value="#{createGroup.users}"  var="u" itemLabel="#{u.email}"/>
             </h:selectManyCheckbox>
-            <h:commandButton value="Créer" action="#{createGroup.create()}">
+            <h:commandButton value="Créer" action="#{createGroup.create()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>

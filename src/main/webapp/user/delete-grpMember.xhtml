@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h:form>
 
             <h:dataTable value="#{listUsers.getDataModel()}" var="member" rules="all">
@@ -56,7 +56,7 @@ and open the template in the editor.
                 </h:column>
 
                 <h:column>
-                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(member.id)}">
+                    <h:commandButton value="Supprimer" action="#{deleteGroupMembers.delete(member.id)}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:param name="groupId" value="#{param['id']}"/>
                     </h:commandButton>
                 </h:column>                

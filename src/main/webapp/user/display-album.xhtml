@@ -12,7 +12,7 @@
         <title>Display album</title>
     </h:head>
     <h:body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h2>Album : #{listAlbums.getSoloAlbum(param.albumId).name}</h2> 
         <br></br>
         <h2>Description : #{listAlbums.getSoloAlbum(param.albumId).description}</h2> 

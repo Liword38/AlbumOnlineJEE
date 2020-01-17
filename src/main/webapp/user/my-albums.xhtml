@@ -13,7 +13,7 @@ and open the template in the editor.
         <title>Liste des albums</title>
     </h:head>
     <h:body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
 
         <h2>Mes Albums</h2>
         <h:form>
@@ -59,17 +59,17 @@ and open the template in the editor.
                         <h:outputText value="Actions"/>
                     </f:facet>
 
-                    <h:commandButton action="Editing album" value="Modifier">
+                    <h:commandButton action="Editing album" value="Modifier" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target.id}"/>
                     </h:commandButton>
                     
-                    <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
+                    <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
                     
-                    <h:commandButton value="Partager avec ..." action="Sharing album">
+                    <h:commandButton value="Partager avec ..." action="Sharing album" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:setPropertyActionListener value="#{album.id}" target="#{shareAlbum.target.id}"/>
                     </h:commandButton>
                     
-                    <h:commandButton value="Retirer de ..." action="Unsharing album">
+                    <h:commandButton value="Retirer de ..." action="Unsharing album" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:setPropertyActionListener value="#{album.id}" target="#{unshareAlbum.target.id}"/>
                     </h:commandButton>
 

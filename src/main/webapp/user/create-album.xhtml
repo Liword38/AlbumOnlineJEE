@@ -35,7 +35,7 @@ and open the template in the editor.
             </h:selectManyCheckbox>
 
 
-            <h:commandButton value="Créer" action="#{createAlbum.create()}">
+            <h:commandButton value="Créer" action="#{createAlbum.create()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                 <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>

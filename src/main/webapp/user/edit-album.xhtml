@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-<h:button value="Accueil" outcome="go-home"/>
+<h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h:form>
 
             <h:panelGrid columns = "3">
@@ -29,7 +29,7 @@ and open the template in the editor.
                 <h:inputTextarea id="description" h5:placeholder="Description" value="#{editAlbum.target.description}"/>
             </h:panelGrid>
 
-            <h:commandButton value="Valider" action="#{editAlbum.update()}">
+            <h:commandButton value="Valider" action="#{editAlbum.update()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                 <f:param name="ownerId" value="#{sessionTools.connectedUser.id}"/>
             </h:commandButton>
             <h:messages globalOnly="true"/>

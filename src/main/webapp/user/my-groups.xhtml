@@ -8,7 +8,7 @@
         <title>Liste des groupes</title>
     </h:head>
     <h:body>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
         <h2>Mes Groupes</h2>     
         <h:form>
             <h:dataTable value="#{listMyGroups.dataModel}" var="group"
@@ -44,18 +44,18 @@
                     <f:facet name="header">
                         <h:outputText value="Actions" />
                     </f:facet>
-                    <h:commandButton value="Ajouter membre(s)" action="Adding member">
+                    <h:commandButton value="Ajouter membre(s)" action="Adding member" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:setPropertyActionListener value="#{group.id}" target="#{addGroupMembers.target.id}"/>
                     </h:commandButton>                  
 
 
-                    <h:commandButton value="Supprimer membre(s)" action="Deleting member">
+                    <h:commandButton value="Supprimer membre(s)" action="Deleting member" style="background-color: lightgray; border-radius: 10px; margin-right: 5px">
                         <f:setPropertyActionListener value="#{group.id}" target="#{deleteGroupMembers.target.id}"/>
 
                     </h:commandButton>
 
 
-                    <h:commandButton value="Supprimer groupe" action="#{deleteGroup.delete(group.id)}"/>                  
+                    <h:commandButton value="Supprimer groupe" action="#{deleteGroup.delete(group.id)}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>                  
                 </h:column>
 
 

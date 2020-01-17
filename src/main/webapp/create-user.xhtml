@@ -10,7 +10,7 @@
         <h:form>
             <h:commandButton value="Se déconnecter" action="#{sessionTools.logout()}"/>
         </h:form>
-        <h:button value="Accueil" outcome="go-home"/>
+        <h:button value="Accueil" outcome="go-home" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
 
         <h:form>
             <h:panelGrid columns = "3">
@@ -30,7 +30,7 @@
                 <h:inputSecret id="password" value="#{createUser.password}"/>
                 <h:message for="password"/>
 
-                <h:commandButton value="Créer" action="#{createUser.create()}"/>
+                <h:commandButton value="Créer" action="#{createUser.create()}" style="background-color: lightgray; border-radius: 10px; margin-right: 5px"/>
             </h:panelGrid>
             <h:messages globalOnly="true"/>
 
