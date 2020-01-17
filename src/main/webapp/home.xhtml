@@ -43,13 +43,14 @@
                 </h:column>
             </h:dataTable>    
 
-            <h2>Les photos</h2>
+            <h2>Les photos partagées avec moi</h2>
 
-<!--            <h:dataTable id="photos" value="#//{listPhotos.dataModel}" var="photo" >
+            <h:dataTable id="photos" value="#{listPhotos.getDataModelBySharedWithUser(sessionTools.connectedUser.id)}" var="photo" >
+
                 <h:column>
-                    <img src="/AlbumPhotoOnline/#//{photo.name}" alt="" height="100" width="100"/>
+                    <img src="/AlbumPhotoOnline/#{photo.name}" alt="" height="100" width="100"/>
                 </h:column>
-            </h:dataTable>-->
+            </h:dataTable>
 
 
         </div>

@@ -18,6 +18,16 @@
         </navigation-rule>
     -->
     
+    <!-- home page -->
+     <navigation-rule>
+        <description>Home page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>go-home</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
     <!-- create-user page -->
     <navigation-rule>
@@ -243,6 +253,37 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    
+    <!-- Photo -->
+<!--    <navigation-rule>
+        <description>Deleting photo action result</description>
+        <from-view-id>user/display-album.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{deletePhoto.deletePhoto()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect include-view-params="true">  
+                <view-param>  
+                    <name>albumId</name>  
+                    <value>#{createPhoto.current.inAlbum.id}</value>  
+                </view-param>  
+            </redirect>   
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{deletePhoto.deletePhoto()}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+            <redirect include-view-params="true">  
+                <view-param>  
+                    <name>albumId</name>  
+                    <value>#{createPhoto.current.inAlbum.id}</value>  
+                </view-param>  
+            </redirect>
+        </navigation-case>
+    </navigation-rule>-->
+    
+
+    
     
     <!-- MODIFICATIONS -->
     
