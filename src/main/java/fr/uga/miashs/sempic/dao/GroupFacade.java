@@ -52,7 +52,7 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
         q.executeUpdate();
     }
 
-    //pas testé
+
     public void addAlbum(long groupId, long albumId) {
         Query q = getEntityManager().createNativeQuery("INSERT INTO SEMPICALBUM_SEMPICGROUP (MEMBEROFALBUMS_ID,SHAREDWITHGRP_ID) VALUES (?1,?2)");
         q.setParameter(1, albumId);
