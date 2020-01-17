@@ -63,7 +63,7 @@ public class GroupFacade extends AbstractJpaFacade<Long, SempicGroup> {
     //Pas testé
     public void deleteAlbum(long groupId, long albumId) {
         Query q = getEntityManager().createNativeQuery("DELETE FROM SEMPICALBUM_SEMPICGROUP WHERE MEMBEROFALBUMS_ID=?1 AND SHAREDWITHGRP_ID=?2");
-        q.setParameter(1, groupId);
+        q.setParameter(1, albumId);
         q.setParameter(2, groupId);
         q.executeUpdate();
     }

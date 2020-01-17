@@ -328,20 +328,55 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    <!--
-    <navigation-rule>  
-        <from-view-id>user/my-groups.xhtml</from-view-id>   
+
+    <!-- Partage un album -->
+        <navigation-rule>  
+        <from-view-id>/user/my-albums.xhtml</from-view-id>   
         <navigation-case>  
-            <from-action>Adding member</from-action>
-                <to-view-id>user/delete-grpMember.xhtml</to-view-id>  
-                <redirect include-view-params="true">  
-                    <view-param>  
+            <from-action>Sharing album</from-action>
+            <to-view-id>/user/share-album.xhtml</to-view-id>  
+            <redirect include-view-params="true">  
+                <view-param>  
                     <name>id</name>  
-                    <value>#{editGroupMembers.target.id}</value>  
-                    </view-param>  
-                </redirect>  
+                    <value>#{shareAlbum.target.id}</value>  
+                </view-param>  
+            </redirect>  
         </navigation-case>  
-    </navigation-rule>     -->
+    </navigation-rule>
     
+        <navigation-rule>
+        <description>Album sharing action result</description>
+        <from-view-id>/user/share-album.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{shareAlbum.share()}</from-action>
+            <to-view-id>/user/my-albums.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!-- Enlever partage un album -->
+        <navigation-rule>  
+        <from-view-id>/user/my-albums.xhtml</from-view-id>   
+        <navigation-case>  
+            <from-action>Unsharing album</from-action>
+            <to-view-id>/user/unshare-album.xhtml</to-view-id>  
+            <redirect include-view-params="true">  
+                <view-param>  
+                    <name>id</name>  
+                    <value>#{unshareAlbum.target.id}</value>  
+                </view-param>  
+            </redirect>  
+        </navigation-case>  
+    </navigation-rule>
+    
+        <navigation-rule>
+        <description>Album unsharing action result</description>
+        <from-view-id>/user/unshare-album.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{unshareAlbum.unshare()}</from-action>
+            <to-view-id>/user/my-albums.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

@@ -49,7 +49,7 @@ and open the template in the editor.
                     </f:facet>
 
                     <ui:repeat value="#{album.sharedWithGrp}" var="m">
-                        <h:outputText value="#{m.name} | "/>
+                        <h:outputText value="#{m.name}, "/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
@@ -59,9 +59,17 @@ and open the template in the editor.
 
                     <h:commandButton action="Editing album" value="Modifier">
                         <f:setPropertyActionListener value="#{album.id}" target="#{editAlbum.target.id}"/>
-
                     </h:commandButton>
+                    
                     <h:commandButton value="Supprimer" action="#{deleteAlbum.delete(album.id)}"/>
+                    
+                    <h:commandButton value="Partager avec ..." action="Sharing album">
+                        <f:setPropertyActionListener value="#{album.id}" target="#{shareAlbum.target.id}"/>
+                    </h:commandButton>
+                    
+                    <h:commandButton value="Retirer de ..." action="Unsharing album">
+                        <f:setPropertyActionListener value="#{album.id}" target="#{unshareAlbum.target.id}"/>
+                    </h:commandButton>
 
                 </h:column>
 
@@ -112,7 +120,7 @@ and open the template in the editor.
                 </f:facet>
 
                 <ui:repeat value="#{album.sharedWithGrp}" var="m">
-                    <h:outputText value="#{m.name} | "/>
+                    <h:outputText value="#{m.name}, "/>
                 </ui:repeat>
             </h:column>
 

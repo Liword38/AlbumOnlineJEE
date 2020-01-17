@@ -73,7 +73,7 @@ public class DeleteGroupMembers {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         System.out.println("Les params de la requête:" + params.toString());
         String groupId = params.get("groupId");
-        System.out.println("On essaie de créer une photo dans l'album d'id"+ groupId);
+        System.out.println("On essaie de supprimer un membre du groupe d'id "+ groupId);
         
         System.out.println("ID membre = " + memberId);
         

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:metadata>
+        <f:viewParam name="id" value="#{shareAlbum.target.id}" />
+        <f:viewParam name="ownerId" value="#{shareAlbum.ownerId}" />
+    </f:metadata>
+    <head>
+        <title>Partager l'album</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+        <label for="groups">Partager dans groupes: </label>
+        <h:selectManyCheckbox id="groups" layout="pageDirection" value="#{shareAlbum.target.sharedWith}">
+                <f:selectItems value="#{listMyGroups.dataModel}"  var="group" itemLabel="#{group.name}"/>
+            </h:selectManyCheckbox>
+
+
+            <h:commandButton value="Partager" action="#{shareAlbum.share()}">
+                <f:param name="userId" value="#{sessionTools.connectedUser.id}"/>
+                <f:param name="albumId" value="#{param['id']}"/>
+                <f:param name="groups" value="#{shareAlbum.target.sharedWith}"/>
+            </h:commandButton>
+            <h:messages globalOnly="true"/>
+        </h:form>
+    </body>
+</html>

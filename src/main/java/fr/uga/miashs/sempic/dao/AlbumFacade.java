@@ -45,5 +45,6 @@ public class AlbumFacade extends AbstractJpaFacade<Long, SempicAlbum> {
         q.setParameter(2, photoId);
         q.executeUpdate();
     }
+    
 
 }
